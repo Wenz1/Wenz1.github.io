@@ -1,5 +1,5 @@
 header {
-  width: 90%;
+  width: 100%;
 }
 .container .main-inner {
   width: 90%;
@@ -1839,7 +1839,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #38bf6c;
+  background: #26b817;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2999,9 +2999,6 @@ pre .javascript .function {
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
-.site-meta {
-  background-image: url("/images/bg.jpg");
-}
 body {
   background: url("/images/bg.jpg");
   background-size: cover;
@@ -3011,6 +3008,7 @@ body {
 }
 @font-face {
   font-family: Shoujin;
+  color: #000;
   src: url("/fonts/Shoujin.ttf");
 }
 .site-title {
