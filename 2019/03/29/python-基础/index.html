@@ -86,10 +86,12 @@
 <meta property="og:site_name" content="九罹">
 <meta property="og:description" content="之前学过一点python，但掌握不是太好，重新开始吧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-29T14:00:17.792Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/python-基础/1.png">
+<meta property="og:updated_time" content="2019-04-02T08:24:58.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python--基础">
 <meta name="twitter:description" content="之前学过一点python，但掌握不是太好，重新开始吧">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/29/python-基础/1.png">
 
 
 
@@ -381,8 +383,53 @@
 <li><p>逻辑运算符<br>and 、 or 、 not<br><span id="inline-purple">3&lt;4&lt;5 等价于 3&lt;4 and 4&lt;5</span></p>
 </li>
 </ol>
-<h3 id="变量和赋值"><a href="#变量和赋值" class="headerlink" title="变量和赋值"></a>变量和赋值</h3><p>python中的变量名仅仅是一些字母开头得标识符——所谓字母开头，意指大写或小写字母、包括下划线_ ；其他的字符可以是数字、字母或下划线。python变量ing是大小写敏感的。</p>
+<h3 id="变量和赋值"><a href="#变量和赋值" class="headerlink" title="变量和赋值"></a>变量和赋值</h3><p>python中的变量名仅仅是一些字母开头得标识符——所谓字母开头，意指大写或小写字母、包括下划线_ ；其他的字符可以是数字、字母或下划线。python变量是大小写敏感的。</p>
 <p>python是动态类型语言，不需预先声明变量类型</p>
+<h3 id="数"><a href="#数" class="headerlink" title="数"></a>数</h3><p>python有3中数据类型：整数、浮点数、复数（-5+3i）</p>
+<blockquote>
+<p>注：python中不区分long int类型，默认的整数类型可以任意长。</p>
+</blockquote>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>同其他语言一样，是字符的序列</p>
+<ol>
+<li><p>单引号、双引号、三引号<br>单引号与双引号指定字符串，所有的空白，即空格和制表 符都照原样保留。</p>
+<p> 三引号(‘’’) 可以指定一个多行的字符串，可以在三引号中自由 的使用单引号和双引号。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; print(&apos;&apos;&apos;aaa</span><br><span class="line">... bbb</span><br><span class="line">... &apos;&apos;&apos;</span><br><span class="line">... )</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转义序列<br> 使用反斜杠(\)将特殊字符进行转义<br> 比如单引号里用单引号，双引号里用双引号，都需要将内容里的单引号进行转义</p>
+<p> 如果想指定两行字符串的话，一是用’’’,二是用转义符\n表示新的一行的开始<span id="inline-blue">(This is the ﬁrst line\nThis is the second line )</span></p>
+<blockquote>
+<p>在一个字符串中，在一行末尾的反斜杠仅仅表示下一行的字符串是上一行的继续，但并不增加新的行。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &quot;one.\</span><br><span class="line">... two&quot;</span><br><span class="line">&apos;one.two&apos;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>自然字符串<br> 如果，你想指定一些不被特殊处理，例如像转义序列，那么，就需要通过在字符 串前面附加 r 或 R 来指定自然字符串。</p>
+<p> 例如，<code>r&#39;Newlines are indicated by \n&#39;</code></p>
+</li>
+<li><p>按字面意义级连字符串<br> 如果把两个字符串按字面意思连接相邻写入，它们会被python 自动级连。<br> 例如， “What\’s”‘your name?’</p>
+</li>
+<li><p>字符串拼接<br> 可以使用<code>str1.__add__(str2)</code>或者<code>str1 + str2</code>或者直接两个字符串放一起,来拼接字符串</p>
+<p> 但字符串与其它类型拼接时，得先把其它类型转成字符串类型，否则会出错。如’str1 + 2’就会出错，需要’str1 + str(2)’</p>
+</li>
+<li><p>字符串的乘法运算<br> “*“: 可以把字符串重复拼接若干次,如: 2 * 3 得到 6; ‘la’ * 3得到’lalala’。但乘以0或者负数时,结果将会是空字符串””</p>
+</li>
+<li><p>字符串序列（索引和切片）<br> 字符串可以使用下表来获取字符串中某个项目，以及截取字符串<br> 用法如： a=’qweasd’ 则a[1]=&gt;’w’ ; a[1:3]=&gt;’we’ ; a[1:-1]=&gt;’weas’</p>
+</li>
+<li><p>str(anything)函数和 unicode(anything)函数<br>  Python 2有两个全局函数可以把对象强制转换成字符串:unicode()把对象转换成Unicode字符串，还有 str()把对象转换为非Unicode字符串。</p>
+<p>  Python 3只有一种字符串类型，Unicode字符串，所以 str()函数即可完成所有的功能。(unicode()函数在Python 3里不再存在了。)</p>
+</li>
+</ol>
+<p><span id="inline-gray"><br>注：</span></p>
+<ol>
+<li>没有专门的char数据类型，确实没有需要有这个类型。</li>
+<li>单引号和双引号字符串是完全相同的——它们没有在任何方面有不同。</li>
+<li>正则表达式: 一定要用自然字符串处理正则表达式。否则会需要使用很多的反斜杠。</li>
+<li>使用 help(str) 可查看字符串对象定义的所有方法及属性。</li>
+<li>由于百分号有特殊作用，所以字符串里面要用百分号的话需要使用“%%”，如: “select * from my_table where name like ‘%%测试%%’”<br></li>
+</ol>
+<p>字符串详细内容参见链接：<br> <a href="https://blog.csdn.net/qq_33337811/article/details/78312998" target="_blank" rel="noopener">https://blog.csdn.net/qq_33337811/article/details/78312998</a></p>
+<ol start="9">
+<li>format方法<br>类似于占位，在不想用其他信息来构造字符串时，使用format()方法很有用。<br><img src="1.png" alt="1"></li>
+</ol>
 
       
     </div>
@@ -509,7 +556,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -554,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-版本简介"><span class="nav-number">1.</span> <span class="nav-text">python 版本简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python快速入门"><span class="nav-number">2.</span> <span class="nav-text">python快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序输出，print语句"><span class="nav-number">2.1.</span> <span class="nav-text">程序输出，print语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序输入和raw-input-内建函数"><span class="nav-number">2.2.</span> <span class="nav-text">程序输入和raw_input()内建函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-number">2.3.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量和赋值"><span class="nav-number">2.4.</span> <span class="nav-text">变量和赋值</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-版本简介"><span class="nav-number">1.</span> <span class="nav-text">python 版本简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python快速入门"><span class="nav-number">2.</span> <span class="nav-text">python快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序输出，print语句"><span class="nav-number">2.1.</span> <span class="nav-text">程序输出，print语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序输入和raw-input-内建函数"><span class="nav-number">2.2.</span> <span class="nav-text">程序输入和raw_input()内建函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-number">2.3.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量和赋值"><span class="nav-number">2.4.</span> <span class="nav-text">变量和赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数"><span class="nav-number">2.5.</span> <span class="nav-text">数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">2.6.</span> <span class="nav-text">字符串</span></a></li></ol></li></ol></div>
             
 
           </div>
