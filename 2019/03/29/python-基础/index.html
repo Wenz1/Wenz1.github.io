@@ -86,12 +86,13 @@
 <meta property="og:site_name" content="九罹">
 <meta property="og:description" content="之前学过一点python，但掌握不是太好，重新开始吧">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/python-基础/2.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/29/python-基础/1.png">
-<meta property="og:updated_time" content="2019-04-02T08:24:58.291Z">
+<meta property="og:updated_time" content="2019-04-02T12:54:40.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python--基础">
 <meta name="twitter:description" content="之前学过一点python，但掌握不是太好，重新开始吧">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/29/python-基础/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/29/python-基础/2.png">
 
 
 
@@ -375,14 +376,50 @@
 <p>可与下面的输出进行比较<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; num = raw_input(&apos;enter a num:&apos;)</span><br><span class="line">enter a num:12.1</span><br><span class="line">&gt;&gt;&gt; print num*2</span><br><span class="line">12.112.1</span><br></pre></td></tr></table></figure></p>
 <p>小知识<br><span id="inline-blue">help()函数可以帮助使用生疏函数，将函数名作为help()函数的参数值，可以得到相应的帮助信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; help(raw_input)</span><br><span class="line">Help on built-in function raw_input in module __builtin__:</span><br><span class="line"></span><br><span class="line">raw_input(...)</span><br><span class="line">    raw_input([prompt]) -&gt; string</span><br><span class="line"></span><br><span class="line">    Read a string from standard input.  The trailing newline is stripped.</span><br><span class="line">    If the user hits EOF (Unix: Ctl-D, Windows: Ctl-Z+Return), raise EOFError.</span><br><span class="line">    On Unix, GNU readline is used if enabled.  The prompt string, if given,</span><br><span class="line">    is printed without a trailing newline before reading.</span><br></pre></td></tr></table></figure></span></p>
 <p></p>
-<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><ol>
-<li><p>标准算术操作符<br>&#43; 、 &#45; 、 &#42; 、 /(地板除) 、 //(浮点除法，对结果进行四舍五入) 、 % 、 ** (幂)</p>
-</li>
-<li><p>标准比较操作符<br>&#62; 、 &#60; 、 &#61; 、 &#62;&#61; 、 &#60;&#61; 、 &#61;&#61; 、 !&#61; 、 &#60;&#62;<br>结果返回布尔值</p>
-</li>
-<li><p>逻辑运算符<br>and 、 or 、 not<br><span id="inline-purple">3&lt;4&lt;5 等价于 3&lt;4 and 4&lt;5</span></p>
-</li>
-</ol>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><h4 id="1-算术操作符"><a href="#1-算术操作符" class="headerlink" title="1. 算术操作符"></a>1. 算术操作符</h4><p>&#43; 、 &#45; 、 &#42; 、 /(地板除) 、 //(浮点除法，对结果进行四舍五入) 、 % 、 ** (幂)</p>
+<h4 id="2-比较操作符"><a href="#2-比较操作符" class="headerlink" title="2. 比较操作符"></a>2. 比较操作符</h4><p>&#62; 、 &#60; 、 &#61; 、 &#62;&#61; 、 &#60;&#61; 、 &#61;&#61; 、 !&#61; 、 &#60;&#62; 、 &#62;&#62; 、 &#60;&#60;<br>结果返回布尔值</p>
+<h4 id="3-逻辑运算符"><a href="#3-逻辑运算符" class="headerlink" title="3. 逻辑运算符"></a>3. 逻辑运算符</h4><p>and 、 or 、 not<br><span id="inline-purple">3&lt;4&lt;5 等价于 3&lt;4 and 4&lt;5</span></p>
+<h4 id="4-位运算符"><a href="#4-位运算符" class="headerlink" title="4. 位运算符"></a>4. 位运算符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">设变量a=60，b=13，二进制格式如下：</span><br><span class="line">-----------------------------------------------------</span><br><span class="line">a = 0011 1100</span><br><span class="line">b = 0000 1101</span><br><span class="line">-----------------------------------------------------</span><br><span class="line">a&amp;b = 0000 1100</span><br><span class="line">a|b = 0011 1101</span><br><span class="line">a^b = 0011 0001</span><br><span class="line">~a = 1100 0011</span><br></pre></td></tr></table></figure>
+<p><img src="2.png" alt="2"></p>
+<h4 id="5-成员运算符"><a href="#5-成员运算符" class="headerlink" title="5. 成员运算符"></a>5. 成员运算符</h4><p>除了以上的一些运算符之外，Python还支持成员运算符，测试实例中包含了一系列的成员，包括字符串，列表或元组。</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in</td>
+<td>如果在指定的序列中找到值返回 True，否则返回 False</td>
+</tr>
+<tr>
+<td>not in</td>
+<td>如果在指定的序列中没有找到值返回 True，否则返回 False。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="6-身份运算符"><a href="#6-身份运算符" class="headerlink" title="6. 身份运算符"></a>6. 身份运算符</h4><p>身份运算符用于比较两个对象的存储单元</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>is</td>
+<td>is 是判断两个标识符是不是引用自一个对象</td>
+</tr>
+<tr>
+<td>not is</td>
+<td>is not 是判断两个标识符是不是引用自不同对象</td>
+</tr>
+</tbody>
+</table>
+<p><span id="inline-blue">注：is用于判断两个变量引用对象是否为同一个，==用于判断引用变量的值是否相等</span></p>
 <h3 id="变量和赋值"><a href="#变量和赋值" class="headerlink" title="变量和赋值"></a>变量和赋值</h3><p>python中的变量名仅仅是一些字母开头得标识符——所谓字母开头，意指大写或小写字母、包括下划线_ ；其他的字符可以是数字、字母或下划线。python变量是大小写敏感的。</p>
 <p>python是动态类型语言，不需预先声明变量类型</p>
 <h3 id="数"><a href="#数" class="headerlink" title="数"></a>数</h3><p>python有3中数据类型：整数、浮点数、复数（-5+3i）</p>
@@ -390,35 +427,32 @@
 <p>注：python中不区分long int类型，默认的整数类型可以任意长。</p>
 </blockquote>
 <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>同其他语言一样，是字符的序列</p>
-<ol>
-<li><p>单引号、双引号、三引号<br>单引号与双引号指定字符串，所有的空白，即空格和制表 符都照原样保留。</p>
-<p> 三引号(‘’’) 可以指定一个多行的字符串，可以在三引号中自由 的使用单引号和双引号。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; print(&apos;&apos;&apos;aaa</span><br><span class="line">... bbb</span><br><span class="line">... &apos;&apos;&apos;</span><br><span class="line">... )</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>转义序列<br> 使用反斜杠(\)将特殊字符进行转义<br> 比如单引号里用单引号，双引号里用双引号，都需要将内容里的单引号进行转义</p>
-<p> 如果想指定两行字符串的话，一是用’’’,二是用转义符\n表示新的一行的开始<span id="inline-blue">(This is the ﬁrst line\nThis is the second line )</span></p>
-<blockquote>
-<p>在一个字符串中，在一行末尾的反斜杠仅仅表示下一行的字符串是上一行的继续，但并不增加新的行。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &quot;one.\</span><br><span class="line">... two&quot;</span><br><span class="line">&apos;one.two&apos;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>自然字符串<br> 如果，你想指定一些不被特殊处理，例如像转义序列，那么，就需要通过在字符 串前面附加 r 或 R 来指定自然字符串。</p>
-<p> 例如，<code>r&#39;Newlines are indicated by \n&#39;</code></p>
-</li>
-<li><p>按字面意义级连字符串<br> 如果把两个字符串按字面意思连接相邻写入，它们会被python 自动级连。<br> 例如， “What\’s”‘your name?’</p>
-</li>
-<li><p>字符串拼接<br> 可以使用<code>str1.__add__(str2)</code>或者<code>str1 + str2</code>或者直接两个字符串放一起,来拼接字符串</p>
-<p> 但字符串与其它类型拼接时，得先把其它类型转成字符串类型，否则会出错。如’str1 + 2’就会出错，需要’str1 + str(2)’</p>
-</li>
-<li><p>字符串的乘法运算<br> “*“: 可以把字符串重复拼接若干次,如: 2 * 3 得到 6; ‘la’ * 3得到’lalala’。但乘以0或者负数时,结果将会是空字符串””</p>
-</li>
-<li><p>字符串序列（索引和切片）<br> 字符串可以使用下表来获取字符串中某个项目，以及截取字符串<br> 用法如： a=’qweasd’ 则a[1]=&gt;’w’ ; a[1:3]=&gt;’we’ ; a[1:-1]=&gt;’weas’</p>
-</li>
-<li><p>str(anything)函数和 unicode(anything)函数<br>  Python 2有两个全局函数可以把对象强制转换成字符串:unicode()把对象转换成Unicode字符串，还有 str()把对象转换为非Unicode字符串。</p>
-<p>  Python 3只有一种字符串类型，Unicode字符串，所以 str()函数即可完成所有的功能。(unicode()函数在Python 3里不再存在了。)</p>
-</li>
-</ol>
-<p><span id="inline-gray"><br>注：</span></p>
+<h4 id="1-单引号、双引号、三引号"><a href="#1-单引号、双引号、三引号" class="headerlink" title="1. 单引号、双引号、三引号"></a>1. 单引号、双引号、三引号</h4><p>单引号与双引号指定字符串，所有的空白，即空格和制表 符都照原样保留。</p>
+<pre><code>三引号(&apos;&apos;&apos;) 可以指定一个多行的字符串，可以在三引号中自由 的使用单引号和双引号。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; print(&apos;&apos;&apos;aaa</span><br><span class="line">... bbb</span><br><span class="line">... &apos;&apos;&apos;</span><br><span class="line">... )</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="2-转义序列"><a href="#2-转义序列" class="headerlink" title="2. 转义序列"></a>2. 转义序列</h4><pre><code>使用反斜杠(\\)将特殊字符进行转义
+比如单引号里用单引号，双引号里用双引号，都需要将内容里的单引号进行转义
+
+如果想指定两行字符串的话，一是用&apos;&apos;&apos;,二是用转义符\n表示新的一行的开始&lt;span id=&quot;inline-blue&quot;&gt;(This is the ﬁrst line\nThis is the second line )&lt;/span&gt;
+
+&gt; 在一个字符串中，在一行末尾的反斜杠仅仅表示下一行的字符串是上一行的继续，但并不增加新的行。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &quot;one.\</span><br><span class="line">... two&quot;</span><br><span class="line">&apos;one.two&apos;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="3-自然字符串"><a href="#3-自然字符串" class="headerlink" title="3. 自然字符串"></a>3. 自然字符串</h4><pre><code>如果，你想指定一些不被特殊处理，例如像转义序列，那么，就需要通过在字符 串前面附加 r 或 R 来指定自然字符串。
+
+例如，`r&apos;Newlines are indicated by \n&apos;`
+</code></pre><h4 id="4-按字面意义级连字符串"><a href="#4-按字面意义级连字符串" class="headerlink" title="4. 按字面意义级连字符串"></a>4. 按字面意义级连字符串</h4><pre><code>如果把两个字符串按字面意思连接相邻写入，它们会被python 自动级连。
+例如， &quot;What\’s&quot;&apos;your name?&apos;
+</code></pre><h4 id="5-字符串拼接"><a href="#5-字符串拼接" class="headerlink" title="5. 字符串拼接"></a>5. 字符串拼接</h4><pre><code>可以使用`str1.__add__(str2)`或者`str1 + str2`或者直接两个字符串放一起,来拼接字符串
+
+但字符串与其它类型拼接时，得先把其它类型转成字符串类型，否则会出错。如&apos;str1 + 2&apos;就会出错，需要&apos;str1 + str(2)&apos;
+</code></pre><h4 id="6-字符串的乘法运算"><a href="#6-字符串的乘法运算" class="headerlink" title="6. 字符串的乘法运算"></a>6. 字符串的乘法运算</h4><pre><code>&quot;\*&quot;: 可以把字符串重复拼接若干次,如: 2 \* 3 得到 6; &apos;la&apos; \* 3得到&apos;lalala&apos;。但乘以0或者负数时,结果将会是空字符串&quot;&quot;
+</code></pre><h4 id="7-字符串序列（索引和切片）"><a href="#7-字符串序列（索引和切片）" class="headerlink" title="7. 字符串序列（索引和切片）"></a>7. 字符串序列（索引和切片）</h4><pre><code>字符串可以使用下表来获取字符串中某个项目，以及截取字符串
+用法如： a=&apos;qweasd&apos; 则a[1]=&gt;&apos;w&apos; ; a[1:3]=&gt;&apos;we&apos; ; a[1:-1]=&gt;&apos;weas&apos;
+</code></pre><h4 id="8-str-anything-函数和-unicode-anything-函数"><a href="#8-str-anything-函数和-unicode-anything-函数" class="headerlink" title="8. str(anything)函数和 unicode(anything)函数"></a>8. str(anything)函数和 unicode(anything)函数</h4><pre><code>Python 2有两个全局函数可以把对象强制转换成字符串:unicode()把对象转换成Unicode字符串，还有 str()把对象转换为非Unicode字符串。
+
+Python 3只有一种字符串类型，Unicode字符串，所以 str()函数即可完成所有的功能。(unicode()函数在Python 3里不再存在了。)
+</code></pre><p><span id="inline-gray"><br>注：</span></p>
 <ol>
 <li>没有专门的char数据类型，确实没有需要有这个类型。</li>
 <li>单引号和双引号字符串是完全相同的——它们没有在任何方面有不同。</li>
@@ -426,10 +460,41 @@
 <li>使用 help(str) 可查看字符串对象定义的所有方法及属性。</li>
 <li>由于百分号有特殊作用，所以字符串里面要用百分号的话需要使用“%%”，如: “select * from my_table where name like ‘%%测试%%’”<br></li>
 </ol>
-<p>字符串详细内容参见链接：<br> <a href="https://blog.csdn.net/qq_33337811/article/details/78312998" target="_blank" rel="noopener">https://blog.csdn.net/qq_33337811/article/details/78312998</a></p>
+<p>字符串详细内容参见大佬博客链接：<br> <a href="https://blog.csdn.net/qq_33337811/article/details/78312998" target="_blank" rel="noopener">https://blog.csdn.net/qq_33337811/article/details/78312998</a></p>
 <ol start="9">
-<li>format方法<br>类似于占位，在不想用其他信息来构造字符串时，使用format()方法很有用。<br><img src="1.png" alt="1"></li>
+<li><p>format方法<br> 类似于占位，在不想用其他信息来构造字符串时，使用format()方法很有用。</p>
+<p> <img src="1.png" alt="1"></p>
+<p> 转为字符串的操作由 format 自动完成，而不需要明确 的转换。用 format 方法的时候，不必处理用过的变量和 vice-versa 就能改变消息。</p>
+</li>
 </ol>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>Python 是完全面向对象的，在某种意义上，任何东西都被作为对象，包括数字、字符串和函数。</p>
+<p>demo: 使用变量和文字意义上的常量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># filename:demo1.py</span><br><span class="line">i=5</span><br><span class="line">print(i)</span><br><span class="line"></span><br><span class="line">i = i+1</span><br><span class="line">print(i)</span><br><span class="line"></span><br><span class="line">s=&apos;&apos;&apos;This is one.</span><br><span class="line">this is two&apos;&apos;&apos;</span><br><span class="line">print(s)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">This is one.</span><br><span class="line">this is two</span><br></pre></td></tr></table></figure></p>
+<p><span id="inline-blue">注：使用变量时只需要给它们赋一个值。不需要声明或定义数据类型。</span></p>
+<h3 id="逻辑行和物理行"><a href="#逻辑行和物理行" class="headerlink" title="逻辑行和物理行"></a>逻辑行和物理行</h3><p>物理行是编写程序时所看见的。逻辑行是python看见的单个语句。python嘉定每个物理行对应一个逻辑行。<br>如果像在一个物理行中使用多于一个逻辑行，那么使用分毫开特别地标明这种用法。分号表示一个逻辑行语句的结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1 i = 5 </span><br><span class="line">2 print i</span><br><span class="line">等于</span><br><span class="line">1 i = 5; </span><br><span class="line">2 print i;</span><br><span class="line">等于</span><br><span class="line">i=5;print i;  甚至写成i=5;print i</span><br><span class="line">连接的话</span><br><span class="line">print \ </span><br><span class="line">i</span><br><span class="line">与如下写法效果相同：</span><br><span class="line">print i</span><br></pre></td></tr></table></figure>
+<h3 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h3><p>在python中有三种控制流：if、 for、 while</p>
+<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><blockquote>
+<p>注意 if 语句在结尾处包含一个冒号 —— 我们通过它告诉 Python 下面跟着一个语 句块。<br>在 Python 中没有 switch 语句。你可以使用 <code>if..elif..else</code> 语句来完成同样的工作（在某些场合，使用 字典会更加快捷。）</p>
+</blockquote>
+<p>demo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#filename:if.py</span><br><span class="line"></span><br><span class="line">number = 24</span><br><span class="line">guess = int(raw_input(&apos;enter an integer:&apos;))</span><br><span class="line"></span><br><span class="line">if (guess == number):</span><br><span class="line">	print(&apos;win&apos;)</span><br><span class="line">elif (guess &lt;= number):</span><br><span class="line">	print(&quot;s&quot;);</span><br><span class="line">else:</span><br><span class="line">	print(&quot;b&quot;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="while"><a href="#while" class="headerlink" title="while"></a>while</h4><p><code>while 语句有一个可选的 else 从句</code></p>
+<p>demo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># Filename while.py</span><br><span class="line">number = 23</span><br><span class="line">running = True</span><br><span class="line"></span><br><span class="line">while running:</span><br><span class="line">	guess = int(raw_input(&quot;enter a number&quot;))</span><br><span class="line"></span><br><span class="line">	if guess == number:</span><br><span class="line">		print(&quot;win&quot;)</span><br><span class="line">		running=False</span><br><span class="line">	elif guess &lt;number:</span><br><span class="line">		print(&quot;s&quot;)</span><br><span class="line">	else:</span><br><span class="line">		print(&quot;b&quot;)</span><br><span class="line">else:</span><br><span class="line">	print(&quot;the while loop is over&quot;)</span><br><span class="line">print(&quot;over&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enter a number24</span><br><span class="line">b</span><br><span class="line">enter a number23</span><br><span class="line">win</span><br><span class="line">the while loop is over</span><br><span class="line">over</span><br></pre></td></tr></table></figure></p>
+<h4 id="for"><a href="#for" class="headerlink" title="for"></a>for</h4><p><code>for...in</code>是另外一个循环语句，它在一序列的对象上迭代，即逐一使用序列中的每个项目</p>
+<blockquote>
+<p>else 部分是可选的。如果包含 else ，它总是在 for 循环结束后执行一次， 除非遇到 break 语句。在 C/C++ 中，如果你想要写 for (int i = 0; i &lt; 5; i++) ，那么用 Python ，你写成 for i in range(0,5) 。你会注意到， Python 的 for 循环更加简单、明白、不易出错.</p>
+</blockquote>
+<p>demo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for j in range(1,5):</span><br><span class="line">	print(j)</span><br><span class="line">else:</span><br><span class="line">	print(&apos;the for loop is over&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">the for loop is over</span><br></pre></td></tr></table></figure></p>
+<h4 id="break"><a href="#break" class="headerlink" title="break"></a>break</h4><p>break 语句是用来终止循环语句的，即哪怕循环条件没有变为 False 或序列还没有 被完全迭代结束，也停止执行循环语句。</p>
+<p><span id="inline-blue">如果你从 for 或 while 循环中终止，任何对应的循环 else 块 将不执行。</span></p>
+<p>demo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#Filename:break.py</span><br><span class="line">while True:</span><br><span class="line">	s = (raw_input(&apos;enter something:&apos;))</span><br><span class="line">	if s==&apos;quit&apos;:</span><br><span class="line">		break</span><br><span class="line">	print(&apos;length os the string is&apos;,len(s))</span><br><span class="line">print(&apos;Done&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enter something:quite</span><br><span class="line">(&apos;length os the string is&apos;, 5)</span><br><span class="line">enter something:quit</span><br><span class="line">Done</span><br></pre></td></tr></table></figure></p>
+<h4 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h4><blockquote>
+<p>continue 语句对于 for 循环也有效。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#Filename:continue.py</span><br><span class="line">while True:</span><br><span class="line">	s = raw_input(&apos;Enter something:&apos;)</span><br><span class="line">	if s==&apos;quit&apos;:</span><br><span class="line">		break</span><br><span class="line">	if len(s)&lt;4:</span><br><span class="line">		print(&apos;small&apos;)</span><br><span class="line">	continue</span><br><span class="line"></span><br><span class="line">	print(&apos;Input is of sufficient length&apos;)</span><br></pre></td></tr></table></figure>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Enter something:asd</span><br><span class="line">small</span><br><span class="line">Enter something:asdsdas</span><br><span class="line">Enter something:quit</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -601,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-版本简介"><span class="nav-number">1.</span> <span class="nav-text">python 版本简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python快速入门"><span class="nav-number">2.</span> <span class="nav-text">python快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序输出，print语句"><span class="nav-number">2.1.</span> <span class="nav-text">程序输出，print语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序输入和raw-input-内建函数"><span class="nav-number">2.2.</span> <span class="nav-text">程序输入和raw_input()内建函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-number">2.3.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量和赋值"><span class="nav-number">2.4.</span> <span class="nav-text">变量和赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数"><span class="nav-number">2.5.</span> <span class="nav-text">数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">2.6.</span> <span class="nav-text">字符串</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-版本简介"><span class="nav-number">1.</span> <span class="nav-text">python 版本简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python快速入门"><span class="nav-number">2.</span> <span class="nav-text">python快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序输出，print语句"><span class="nav-number">2.1.</span> <span class="nav-text">程序输出，print语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序输入和raw-input-内建函数"><span class="nav-number">2.2.</span> <span class="nav-text">程序输入和raw_input()内建函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-number">2.3.</span> <span class="nav-text">操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-算术操作符"><span class="nav-number">2.3.1.</span> <span class="nav-text">1. 算术操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-比较操作符"><span class="nav-number">2.3.2.</span> <span class="nav-text">2. 比较操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-逻辑运算符"><span class="nav-number">2.3.3.</span> <span class="nav-text">3. 逻辑运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-位运算符"><span class="nav-number">2.3.4.</span> <span class="nav-text">4. 位运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-成员运算符"><span class="nav-number">2.3.5.</span> <span class="nav-text">5. 成员运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-身份运算符"><span class="nav-number">2.3.6.</span> <span class="nav-text">6. 身份运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量和赋值"><span class="nav-number">2.4.</span> <span class="nav-text">变量和赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数"><span class="nav-number">2.5.</span> <span class="nav-text">数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">2.6.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-单引号、双引号、三引号"><span class="nav-number">2.6.1.</span> <span class="nav-text">1. 单引号、双引号、三引号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-转义序列"><span class="nav-number">2.6.2.</span> <span class="nav-text">2. 转义序列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-自然字符串"><span class="nav-number">2.6.3.</span> <span class="nav-text">3. 自然字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-按字面意义级连字符串"><span class="nav-number">2.6.4.</span> <span class="nav-text">4. 按字面意义级连字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-字符串拼接"><span class="nav-number">2.6.5.</span> <span class="nav-text">5. 字符串拼接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-字符串的乘法运算"><span class="nav-number">2.6.6.</span> <span class="nav-text">6. 字符串的乘法运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-字符串序列（索引和切片）"><span class="nav-number">2.6.7.</span> <span class="nav-text">7. 字符串序列（索引和切片）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-str-anything-函数和-unicode-anything-函数"><span class="nav-number">2.6.8.</span> <span class="nav-text">8. str(anything)函数和 unicode(anything)函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">2.7.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑行和物理行"><span class="nav-number">2.8.</span> <span class="nav-text">逻辑行和物理行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制流"><span class="nav-number">2.9.</span> <span class="nav-text">控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if"><span class="nav-number">2.9.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#while"><span class="nav-number">2.9.2.</span> <span class="nav-text">while</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for"><span class="nav-number">2.9.3.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#break"><span class="nav-number">2.9.4.</span> <span class="nav-text">break</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#continue"><span class="nav-number">2.9.5.</span> <span class="nav-text">continue</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
