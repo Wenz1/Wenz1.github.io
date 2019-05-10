@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python,">
+  <meta name="keywords" content="python ARP,">
 
 
 
@@ -79,21 +79,26 @@
 
 
 
-<meta name="description" content="python基础第2篇">
-<meta name="keywords" content="python">
+<meta name="description" content="ARP欺骗是一种在局域网中常用的攻击手段，目的是让局域网中指定的（或全部）的目标机器的数据包都通过攻击者主机进行转发，是实现中间人攻击的常用手段，从而实现数据监听、篡改、重放、钓鱼等攻击方式。">
+<meta name="keywords" content="python ARP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python-基础补充">
-<meta property="og:url" content="http://yoursite.com/2019/04/15/python-基础补充/index.html">
+<meta property="og:title" content="ARP欺骗 | ARP监控">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/index.html">
 <meta property="og:site_name" content="九罹">
-<meta property="og:description" content="python基础第2篇">
+<meta property="og:description" content="ARP欺骗是一种在局域网中常用的攻击手段，目的是让局域网中指定的（或全部）的目标机器的数据包都通过攻击者主机进行转发，是实现中间人攻击的常用手段，从而实现数据监听、篡改、重放、钓鱼等攻击方式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/04/15/python-基础补充/1.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/15/python-基础补充/2.png">
-<meta property="og:updated_time" content="2019-04-15T13:15:27.538Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/７.png">
+<meta property="og:updated_time" content="2019-04-20T04:27:08.767Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python-基础补充">
-<meta name="twitter:description" content="python基础第2篇">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/15/python-基础补充/1.png">
+<meta name="twitter:title" content="ARP欺骗 | ARP监控">
+<meta name="twitter:description" content="ARP欺骗是一种在局域网中常用的攻击手段，目的是让局域网中指定的（或全部）的目标机器的数据包都通过攻击者主机进行转发，是实现中间人攻击的常用手段，从而实现数据监听、篡改、重放、钓鱼等攻击方式。">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/1.png">
 
 
 
@@ -123,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/15/python-基础补充/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/">
 
 
 
 
 
-  <title>python-基础补充 | 九罹</title>
+  <title>ARP欺骗 | ARP监控 | 九罹</title>
   
 
 
@@ -266,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/python-基础补充/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/ARP欺骗-ARP监控/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wenz1">
@@ -283,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python-基础补充</h1>
+          <h1 class="post-title" itemprop="name headline">ARP欺骗 | ARP监控</h1>
         
 
         <div class="post-meta">
@@ -295,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T19:34:10+08:00">
-                2019-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T18:32:14+08:00">
+                2019-04-18
               </time>
             
 
@@ -342,7 +347,7 @@
 
           
               <div class="post-description">
-                  python基础第2篇
+                  ARP欺骗是一种在局域网中常用的攻击手段，目的是让局域网中指定的（或全部）的目标机器的数据包都通过攻击者主机进行转发，是实现中间人攻击的常用手段，从而实现数据监听、篡改、重放、钓鱼等攻击方式。
               </div>
           
 
@@ -359,41 +364,45 @@
       
 
       
-        <h3 id="列表推导式"><a href="#列表推导式" class="headerlink" title="列表推导式"></a>列表推导式</h3><blockquote>
-<p>列表切片 LISTNAME[START:STOP:STEP]</p>
-</blockquote>
-<p>列表推导式会以现有列表为基础创建新的列表。对列表推导式部分给出两个例子：一个数字类型的，一个string类型的。要理解：<code>列表推导式一定要基于要给现有存在的列表</code>。</p>
-<p><img src="1.png" alt="1"></p>
-<p>语法分析：</p>
+        <h2 id="ARP欺骗"><a href="#ARP欺骗" class="headerlink" title="ARP欺骗"></a>ARP欺骗</h2><h3 id="ARP介绍"><a href="#ARP介绍" class="headerlink" title="ARP介绍"></a>ARP介绍</h3><p>ARP是地址转换协议（Address Resolution Protocol）的英文缩写，它是一个链路层协议，工作在OSI模型的第二层，在本层和硬件接口间进行联系，同时对上层（网络层）提供服务。<br>二层的以太网交换设备并不能识别32位的IP地址，它们是以48位以太网地址（就是我们常说的MAC地址）传输以太网数据包的。<br>也就是说，IP数据包在局域网内部传输时并不是靠IP地址而是靠MAC地址来识别目标，因此IP地址与MAC地址之间就必须存在一种对应关系，而ARP协议就是用来确定这种对应关系的协议</p>
+<p>ARP工作时，首先请求主机会发送一个含有所有希望到达的IP地址的以太网广播数据包，然后目标IP的所有者会以一个含有IP和MAC地址对的数据包应答请求主机。这样请求主机就能获得要达到的IP地址对应的MAC地址，同时请求主机会将这个地址对放入自己的ARP表缓存起来，以街约不必要的ARP通信。ARP缓存表采用了老化机制，在一段时间内如果表中的某一行没有使用，就会被删除。</p>
+<h3 id="APR欺骗原理"><a href="#APR欺骗原理" class="headerlink" title="APR欺骗原理"></a>APR欺骗原理</h3><p>局域网上的一台主机，如果接收到一个ARP报文，即使该报文不是该主机所发送的ARP请求的应答报文，该主机也会将ARP报文中的发送者的MAC地址和IP地址更新或加入发哦ARP列表中。</p>
+<p>APR欺骗攻击就是利用这点，攻击者主动发送ARP报文，发送者的MAC地址为攻击者主机MAVC地址，发送者的IP地址为被攻击主机的IP地址。通过不断发送这些伪造的ARP报文，让局域网上所有的主机和网关ARP表，其对应的MAC地址均为攻击者的MAC地址，这样所有的网络流量都会发送给攻击者主机。由于ARP欺骗攻击导致了主机和网关的ARP表的不正确，这种情况我们也成为ARP中毒。</p>
+<p>根据ARP欺骗者与被欺骗者之间的角色关系不同，通常可以把ARP欺骗攻击分为两种：</p>
 <ul>
-<li><p>list1临时声明变量x，x后面跟了一个for循环，迭代range(0,10)返回的每一个值，这些东西都被放进了方括号里。当print输出的时，返回是0到9.</p>
-</li>
-<li><p>list2做了一个过滤，使用”if x%2 ==0”，得到范围内的偶数，这个过滤的工作方式是，如果条件语句为真，那么x就会被包含进结果列表里。</p>
-</li>
+<li>主机型ARP欺骗： 欺骗者主机冒充网关设备对其他主机进行欺骗</li>
+<li>网关型ARP欺骗： 欺骗者主机冒充其他主机对网关设备进行欺骗</li>
 </ul>
-<p>把列表字符串元素编程小写：</p>
+<p><img src="1.png" alt="1"></p>
+<p>其实很多时候，都是进行双向欺骗，既欺骗主机又欺骗网关。</p>
+<h3 id="基本信息网络信息"><a href="#基本信息网络信息" class="headerlink" title="基本信息网络信息"></a>基本信息网络信息</h3><p>kali linux的网络配置和ARP缓存</p>
 <p><img src="2.png" alt="2"></p>
-<h3 id="lambda和lambda操作符"><a href="#lambda和lambda操作符" class="headerlink" title="lambda和lambda操作符"></a>lambda和lambda操作符</h3><h4 id="Lambda-用法"><a href="#Lambda-用法" class="headerlink" title="Lambda 用法"></a>Lambda 用法</h4><p>lambda可以快速构建简单函数。平时创建函数实，都需先定义，然后设计函数返回内容；Lambda表达式可以简化这一过程，将内容浓缩到一行代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def fun(x):</span><br><span class="line">	return x*2</span><br><span class="line"></span><br><span class="line">fun(2)</span><br></pre></td></tr></table></figure>
-<p>等价于Lambda方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">funlambda = lambda x: x*2</span><br><span class="line">funlambda(2)</span><br></pre></td></tr></table></figure></p>
-<p><code>lambda表达式必须被赋值给某个变量才能发挥作用。</code></p>
-<blockquote>
-<p>使用lambda表达式: 首先输入lambda，然后是需要输入的参数，最后是返回的值。</p>
-</blockquote>
-<h4 id="Lambda-操作符"><a href="#Lambda-操作符" class="headerlink" title="Lambda 操作符"></a>Lambda 操作符</h4><ol>
-<li>fliter() - 用来过滤原有的list,并把过滤结果放进list中</li>
-<li>map() -同时对list里所有的元素进行操作，并以列表方式给出返回值</li>
-<li>reduce() - 可以对列表顺序执行算术运算</li>
+<p><img src="3.png" alt="3"></p>
+<p>如图，kali linux 以太网卡为eth0，ip地址：192.168.1.106，MAC地址：00:0c:29:4e:05:7a</p>
+<p>同样方法查看windows系统的信息</p>
+<p><img src="4.png" alt="4"></p>
+<h3 id="构造ARP欺骗数据包"><a href="#构造ARP欺骗数据包" class="headerlink" title="构造ARP欺骗数据包"></a>构造ARP欺骗数据包</h3><p>攻击机：192.168.1.106<br>目标靶机：192.168.1.160</p>
+<p>首先导入scapy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">import time</span><br><span class="line">from scapy.all import (</span><br><span class="line">    get_if_hwaddr,</span><br><span class="line">    getmacbyip,</span><br><span class="line">    ARP,</span><br><span class="line">    Ether,</span><br><span class="line">    sendp</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p><code>get_if_hwaddr</code> 为获取本机网络接口的函数<br><code>getmacbyip</code> 是通过ip地址获取其Mac地址的方法<br><code>ARP</code> 是构建ARP数据包的类<br><code>Ether</code> 用来构建以太网数据包<br><code>sendp</code> 方法在第二层发送数据包</p>
+<ol>
+<li>Ether 参数</li>
 </ol>
-<p><span id="inline-red">注：这些操作符也可以被单独当成函数使用，但是通常它们会和lambda表达式一起使用。</span></p>
-<h5 id="filter操作符"><a href="#filter操作符" class="headerlink" title="filter操作符"></a>filter操作符</h5><p>filter操作符可以用来过滤现有列表里的内容，并把符合要求的放进新列表里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; filter(lambda x: x%2==0,range(0,10))</span><br><span class="line">[0, 2, 4, 6, 8]</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>filter(lambda表达式提供过滤条件, 要进行过滤的现有列表)<br>filter操作符返回一个符合条件的列表类型</p>
-</blockquote>
-<h4 id="map操作符"><a href="#map操作符" class="headerlink" title="map操作符"></a>map操作符</h4><p>使用map操作符，可以把列表里的所有元素都进行某一个操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; map(lambda x: x*2, range(0,10))</span><br><span class="line">[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</span><br></pre></td></tr></table></figure></p>
-<p>range(0,10)所返回的列表中的每一个元素都被乘上了2.</p>
-<h4 id="reduce操作符"><a href="#reduce操作符" class="headerlink" title="reduce操作符"></a>reduce操作符</h4><p>reduce操作符对列表进行顺序的迭代.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 把列表里的所有元素相加:</span><br><span class="line">&gt;&gt;&gt; list = range(0,10)</span><br><span class="line">&gt;&gt;&gt; reduce(lambda x,y: x + y,list)</span><br><span class="line">45</span><br></pre></td></tr></table></figure></p>
-<p>reduce操作的时候，会从0开始，0+1得到1，然后1+2得到3，然后3+3得到6，6+4得到10……</p>
+<p><img src="5.png" alt="5"></p>
+<p>构造一个以太网数据包通常需要指定目标和源MAC地址，如果不指定默认发出的就是广播包，例如：</p>
+<p><img src="6.png" alt="6"></p>
+<ol start="2">
+<li>ARP类构造函数的参数列表</li>
+</ol>
+<p><img src="７.png" alt="７"></p>
+<p>注意：</p>
+<ul>
+<li>op — 取值为1或者为2，代表ARP请求或响应包</li>
+<li>hwsrc — 发送方MAC地址</li>
+<li>psrc — 发送方IP地址</li>
+<li>hwdst — 目标MAC地址</li>
+<li>pdst — 目标IP地址</li>
+</ul>
+<h4 id="定向欺骗"><a href="#定向欺骗" class="headerlink" title="定向欺骗"></a>定向欺骗</h4><p>告诉目标主机1.160</p>
 
       
     </div>
@@ -411,7 +420,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/python-ARP/" rel="tag"># python ARP</a>
           
         </div>
       
@@ -424,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/10/DNS劫持原理与操作/" rel="next" title="DNS劫持原理与操作">
-                <i class="fa fa-chevron-left"></i> DNS劫持原理与操作
+              <a href="/2019/04/17/DDCTF-writeup/" rel="next" title="DDCTF-writeup">
+                <i class="fa fa-chevron-left"></i> DDCTF-writeup
               </a>
             
           </div>
@@ -433,10 +442,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/16/网络基础-OSI模型和TCP-IP结构体系/" rel="prev" title="[网络基础] OSI模型和TCP/IP结构体系">
-                [网络基础] OSI模型和TCP/IP结构体系 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -571,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表推导式"><span class="nav-number">1.</span> <span class="nav-text">列表推导式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda和lambda操作符"><span class="nav-number">2.</span> <span class="nav-text">lambda和lambda操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambda-用法"><span class="nav-number">2.1.</span> <span class="nav-text">Lambda 用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambda-操作符"><span class="nav-number">2.2.</span> <span class="nav-text">Lambda 操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#filter操作符"><span class="nav-number">2.2.1.</span> <span class="nav-text">filter操作符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map操作符"><span class="nav-number">2.3.</span> <span class="nav-text">map操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reduce操作符"><span class="nav-number">2.4.</span> <span class="nav-text">reduce操作符</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ARP欺骗"><span class="nav-number">1.</span> <span class="nav-text">ARP欺骗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP介绍"><span class="nav-number">1.1.</span> <span class="nav-text">ARP介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APR欺骗原理"><span class="nav-number">1.2.</span> <span class="nav-text">APR欺骗原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本信息网络信息"><span class="nav-number">1.3.</span> <span class="nav-text">基本信息网络信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造ARP欺骗数据包"><span class="nav-number">1.4.</span> <span class="nav-text">构造ARP欺骗数据包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定向欺骗"><span class="nav-number">1.4.1.</span> <span class="nav-text">定向欺骗</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
