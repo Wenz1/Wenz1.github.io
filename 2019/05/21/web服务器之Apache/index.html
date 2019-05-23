@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web服务器 Apache,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Apache起初由伊利诺伊大学香槟分校的国家超级电脑应用中心（NCSA）开发，此后，Apache Httpd被开放源代码团体的成员不断的发展和加强，从上个世纪90年代开始它的市场占有率就超过了50%。Apache自身的安全性是很高的，但是人为的错误设置会导致Apache产生安全问题 。">
+<meta name="keywords" content="web服务器 Apache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web服务器之Apache">
+<meta property="og:url" content="http://yoursite.com/2019/05/21/web服务器之Apache/index.html">
+<meta property="og:site_name" content="九罹">
+<meta property="og:description" content="Apache起初由伊利诺伊大学香槟分校的国家超级电脑应用中心（NCSA）开发，此后，Apache Httpd被开放源代码团体的成员不断的发展和加强，从上个世纪90年代开始它的市场占有率就超过了50%。Apache自身的安全性是很高的，但是人为的错误设置会导致Apache产生安全问题 。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/12.png">
+<meta property="og:updated_time" content="2019-05-23T12:01:07.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web服务器之Apache">
+<meta name="twitter:description" content="Apache起初由伊利诺伊大学香槟分校的国家超级电脑应用中心（NCSA）开发，此后，Apache Httpd被开放源代码团体的成员不断的发展和加强，从上个世纪90年代开始它的市场占有率就超过了50%。Apache自身的安全性是很高的，但是人为的错误设置会导致Apache产生安全问题 。">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/21/web服务器之Apache/4.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/21/web服务器之Apache/">
+
+
+
+
+
+  <title>web服务器之Apache | 九罹</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">九罹</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tools">
+          <a href="/categories/工具资源/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-briefcase"></i> <br>
+            
+            tools
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/21/web服务器之Apache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wenz1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/download.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九罹">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">web服务器之Apache</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T21:55:36+08:00">
+                2019-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">web服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Apache起初由伊利诺伊大学香槟分校的国家超级电脑应用中心（NCSA）开发，此后，Apache Httpd被开放源代码团体的成员不断的发展和加强，从上个世纪90年代开始它的市场占有率就超过了50%。Apache自身的安全性是很高的，但是人为的错误设置会导致Apache产生安全问题 。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Apache服务器安全设置"><a href="#Apache服务器安全设置" class="headerlink" title="Apache服务器安全设置"></a>Apache服务器安全设置</h2><h3 id="服务器运行权限"><a href="#服务器运行权限" class="headerlink" title="服务器运行权限"></a>服务器运行权限</h3><h4 id="Linux-Apache"><a href="#Linux-Apache" class="headerlink" title="Linux-Apache"></a>Linux-Apache</h4><p>Linux系统默认给Apache的是一个www-data账户<br>执行命令<code>Lsof -i:80</code>或<code>ps aux|grep apache|grep -v grep</code></p>
+<p><img src="4.png" alt="4"></p>
+<p><img src="3.png" alt="3"></p>
+<ol>
+<li><code>Apache主进程是以root权限运行。</code>Apache的Web端口是80或443，而在Linux中开启小于xiao1024的端口需要root权限，所以Apache主进程必须是以root权限运行。</li>
+<li><code>Apache子进程执行用户是www-data</code>。www-data是Linux中运行Web服务的默认用户，权限较低</li>
+</ol>
+<p>高级用户可以尝试更改为地权限用户，Apache的运行用户的配置信息在<code>/etc/apache2/apache2.conf</code>，在此文件中，提示用户和用户组设置在<code>/etc/apache2/envvars</code>文件</p>
+<p><img src="2.png" alt="2"></p>
+<p>打开/etc/apache2/envvars文件,可以修改用户和用户组</p>
+<p><img src="1.png" alt="1"></p>
+<h4 id="Windows-Apache"><a href="#Windows-Apache" class="headerlink" title="Windows-Apache"></a>Windows-Apache</h4><p>在Windows上安装完成Apache后默认就是administrator权限，如果使用此权限运行Web服务，如果攻击者拿下webshell就很容易控制整个服务器，可以随意添加账户：</p>
+<p><img src="5.png" alt="5"></p>
+<p>因此，需要给Apache降权，或者说是设置一个安全执行账户：新建一个普通账户，然后将这个账户的用户组改为Guests，注意要将Apache目录下的日志的可写权限赋给Guests账户；然后打开Apache服务属性中的登录选项卡，点选此账户，写入刚才添加的用户名和密码；最后重启服务，这是windows下的Apache权限就设置完毕了。攻击者由于权限问题无法执行高位的系统命令。</p>
+<h3 id="目录及文件权限"><a href="#目录及文件权限" class="headerlink" title="目录及文件权限"></a>目录及文件权限</h3><p><strong>Linux</strong>在默认情况下，如果对当前目录不存在默认文件比如index.php，Apache会列出当前目录</p>
+<p><img src="6.png" alt="6"></p>
+<p>其权限设置在Apache配置文件httpd.conf中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">	Options Indexes FollowSymLinks   </span><br><span class="line">	AllowOverride None</span><br><span class="line">	Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>Options</code>: 两个参数决定了/var/www可以进行的操作<br><code>Indexes</code>: 可以在该目录中使用符号连接<br><code>FollowSymLinks</code>：允许目录浏览，当客户仅指定要访问的目录，但没有指定要访问目录下的哪个文件，而且目录下不存在默认文档时，Apache以超文本形式返回目录中的文件和子目录列表（虚拟目录不会出现在目录列表中）。</p>
+<p>Indexes决定目录可以被列出，从漏洞角度上讲也就是目录遍历漏洞，操作这个参数即可进行权限控制。修改配置文件如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">	Options FollowSymLinks   </span><br><span class="line">	AllowOverride None</span><br><span class="line">	Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p>再次访问时报错，出现“Forbidden”字样</p>
+<p>另外，linux的chmod命令也可进行权限控制，如<code>chomod o-r 1.txt</code>命令将www-data的读权限去掉</p>
+<p><strong>Windows</strong>中同样可以使用这两种方法控制权限，修改httpd.conf同linux中的操作。<br>Windows另一种修改权限的方法是：右键点击选中文件夹（或文件）-&gt;属性-&gt;安全</p>
+<p><img src="7.png" alt="7"></p>
+<p><span id="inline-red">一些文件上传目录一定要设置为不可执行，防止webshell的上传。</span></p>
+<h3 id="错误重定向"><a href="#错误重定向" class="headerlink" title="错误重定向"></a>错误重定向</h3><p>错误重定向是指通过在Web程序出错令其跳转到指定的显示页面。</p>
+<ol>
+<li><p>可以通过设置.htaccess文件达到目的，但是windows中正常情况下无法直接创建.xxx的文件，可以使用DOS命令</p>
+<p><img src="8.png" alt="8"></p>
+<p>然后使用其它编辑器修改.htaccess内容</p>
+</li>
+<li><p>可以通过配置httpd.conf文件达到跳转目的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DocumentRoot  &quot;D:\WWW&quot;</span><br><span class="line">&lt;Directory /&gt;</span><br><span class="line">    Options +Indexes +FollowSymLinks +ExecCGI</span><br><span class="line">    AllowOverride All</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">    Require all granted</span><br><span class="line">    RewriteEngibe On</span><br><span class="line">    RewriteRule &quot;tttt\.html$&quot;  &quot;404.html&quot;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><code>RewriteEngibe On</code> : 开启跳转<br><code>RewriteRule &quot;tttt\.html$&quot;  &quot;404.html&quot;</code> : 第一个参数是一个正则，第二个参数使要跳转到的相对地址；也就是说当符合正则时进行跳转。</p>
+</li>
+</ol>
+<h3 id="Apache日志格式"><a href="#Apache日志格式" class="headerlink" title="Apache日志格式"></a>Apache日志格式</h3><p>Linux中Apache日志文件在<code>/var/log/apache2</code>目录下</p>
+<p><img src="9.png" alt="9"></p>
+<p>其中的压缩文件为Apache自动压缩以节省空间，other_vhosts_access.log是虚拟主机日志</p>
+<ol>
+<li><p>access.log</p>
+<p><img src="10.png" alt="10"></p>
+<p>日志格式：<br>192.168.1.116 - - [23/May/2019:17:52:26 +0800] “GET /icons/unknown.gif HTTP/1.1” 200 528 “<a href="http://192.168.1.116/test/&quot;" target="_blank" rel="noopener">http://192.168.1.116/test/&quot;</a> “Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0”</p>
+<ul>
+<li>远端主机名：192.168.1.116</li>
+<li>远端登录名：-</li>
+<li>远程用户名：-</li>
+<li>访问时间：[23/May/2019:17:52:26 +0800]</li>
+<li>HTTP请求：GET /icons/unknown.gif HTTP/1.1</li>
+<li>HTTP状态码：200</li>
+<li>发送的字节数：528</li>
+<li>Referer：<a href="http://192.168.1.116/test/" target="_blank" rel="noopener">http://192.168.1.116/test/</a></li>
+<li>User-Agent：”Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0”</li>
+</ul>
+</li>
+<li><p>error.log (一般格式为: [日期和时间]   [错误等级]   错误消息)</p>
+<p><img src="11.png" alt="11"></p>
+<p>httpd.conf中定义了error.log的路径和日志级别,级别是指日志记录的最低级别<br>日志级别分类：</p>
+<p><img src="12.png" alt="12"></p>
+</li>
+</ol>
+<p>获取到时间戳：<code>1558511374467</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web服务器-Apache/" rel="tag"># web服务器 Apache</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/20/中间件漏洞之IIS/" rel="next" title="中间件漏洞之IIS">
+                <i class="fa fa-chevron-left"></i> 中间件漏洞之IIS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/download.jpg" alt="Wenz1">
+            
+              <p class="site-author-name" itemprop="name">Wenz1</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          <div id="music163player">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=586299&auto=1&height=66"></iframe>
+</div>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache服务器安全设置"><span class="nav-number">1.</span> <span class="nav-text">Apache服务器安全设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器运行权限"><span class="nav-number">1.1.</span> <span class="nav-text">服务器运行权限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-Apache"><span class="nav-number">1.1.1.</span> <span class="nav-text">Linux-Apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-Apache"><span class="nav-number">1.1.2.</span> <span class="nav-text">Windows-Apache</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录及文件权限"><span class="nav-number">1.2.</span> <span class="nav-text">目录及文件权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误重定向"><span class="nav-number">1.3.</span> <span class="nav-text">错误重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache日志格式"><span class="nav-number">1.4.</span> <span class="nav-text">Apache日志格式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenz1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+
+<!-- 页面点击小红心 -->
+<!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</html>
